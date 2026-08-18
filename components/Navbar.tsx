@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
 const NAV_LINKS = [
@@ -12,9 +12,23 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 60);
+
+      if (currentY < 10) {
+        setHidden(false);
+      } else if (currentY > lastScrollY.current && currentY > 100) {
+        setHidden(true);
+      } else if (currentY < lastScrollY.current) {
+        setHidden(false);
+      }
+      lastScrollY.current = currentY;
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -31,14 +45,16 @@ export default function Navbar() {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-[200]"
+        className="fixed top-0 left-0 right-0"
         style={{
-          transition: "background 350ms ease",
+          zIndex: open ? 210 : 200,
+          transition: "background 350ms ease, transform 350ms cubic-bezier(0.16, 1, 0.3, 1)",
           background: scrolled
             ? "rgba(245, 241, 235, 0.95)"
             : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+          transform: hidden ? "translateY(-100%)" : "translateY(0)",
         }}
       >
         <nav
@@ -61,8 +77,6 @@ export default function Navbar() {
               letterSpacing: "-0.02em",
               color: "var(--color-ink)",
               textDecoration: "none",
-              position: "relative",
-              zIndex: 210,
             }}
           >
             almoo<span style={{ color: "var(--color-accent)" }}>.</span>
@@ -140,8 +154,6 @@ export default function Navbar() {
               cursor: "pointer",
               padding: "var(--space-xs)",
               color: "var(--color-ink)",
-              position: "relative",
-              zIndex: 210,
             }}
           >
             <svg
