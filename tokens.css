@@ -1,0 +1,88 @@
+/* Almoo Studio — Editorial Design System
+ * 90% neutral · 10% accent · warm off-white base
+ * Almoo Studio — Web, App & Digital Growth
+ */
+
+:root {
+  /* ── Fonts ── */
+  --font-display: "Bricolage Grotesque", "Arial Black", sans-serif;
+  --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Colour · Warm off-white base ── */
+  --color-paper:    #F5F1EB;
+  --color-paper-2:  #EDE8E0;
+  --color-paper-3:  #D9D3CA;
+  --color-rule:     #C8C2B8;
+  --color-neutral:  #777777;
+  --color-muted:    #999999;
+  --color-ink:      #111111;
+  --color-ink-2:    #555555;
+
+  /* ── Accent — warm orange/coral, used sparingly ── */
+  --color-accent:       oklch(68% 0.120 40);
+  --color-accent-hover: oklch(62% 0.130 35);
+  --color-accent-2:     oklch(65% 0.140 25);
+  --color-focus:        oklch(68% 0.120 40);
+
+  /* ── Dark surface (footer, dark sections) ── */
+  --color-dark:      #111111;
+  --color-dark-2:    #1A1A1A;
+  --color-dark-ink:  #F5F1EB;
+
+  /* ── Spacing · 4pt scale — generous ── */
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 9rem;
+  --space-5xl: 12rem;
+
+  /* ── Type scale · editorial ── */
+  --text-xs:     0.64rem;
+  --text-sm:     0.8rem;
+  --text-base:   1rem;
+  --text-md:     1.25rem;
+  --text-lg:     1.5625rem;
+  --text-xl:     1.9531rem;
+  --text-2xl:    2.4414rem;
+  --text-3xl:    3.0518rem;
+  --text-4xl:    3.8147rem;
+  --text-display:   clamp(3rem, 6vw + 1rem, 6.5rem);
+  --text-display-s: clamp(2.25rem, 4vw + 1rem, 4.5rem);
+  --text-hero:      clamp(3.25rem, 7.5vw + 0.5rem, 9rem);
+
+  /* ── Easings ── */
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:      cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ── Durations ── */
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long:  420ms;
+
+  /* ── Z-index ── */
+  --z-base:     1;
+  --z-raised:   10;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-modal:    400;
+
+  /* ── Radius ── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  /* ── shadcn-compatible aliases (for CinematicFooter) ── */
+  --background: var(--color-dark);
+  --foreground: var(--color-dark-ink);
+  --primary: var(--color-accent);
+  --secondary: var(--color-accent-2);
+  --muted-foreground: var(--color-neutral);
+  --destructive: oklch(65% 0.250 25);
+  --border: var(--color-rule);
+}
