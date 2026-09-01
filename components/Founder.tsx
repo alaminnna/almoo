@@ -128,12 +128,12 @@ export default function Founder() {
               >
                 <Button
                   as="a"
-                  href="mailto:almoo.agency@gmail.com?subject=Let's%20build%20something"
+                  href="#inquiry"
                   variant="secondary"
                   size="md"
                   magnetic
                 >
-                  Let&apos;s build something <span className="almoo-arrow">→</span>
+                  Start a project <span className="almoo-arrow">→</span>
                 </Button>
               </div>
             </StaggerItem>
@@ -167,12 +167,9 @@ export default function Founder() {
               enableMobileTilt={false}
               behindGlowEnabled={true}
               onContactClick={() => {
-                const contactSection = document.getElementById("audit");
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: "smooth" });
-                } else {
-                  window.location.href =
-                    "mailto:almoo.agency@gmail.com?subject=Let's%20build%20something";
+                const inquirySection = document.getElementById("inquiry");
+                if (inquirySection) {
+                  inquirySection.scrollIntoView({ behavior: "smooth" });
                 }
               }}
             />

@@ -268,7 +268,7 @@ export function CinematicFooter() {
               <div className="flex flex-wrap justify-center gap-4 w-full">
                 <Button
                   as="a"
-                  href="mailto:almoo.agency@gmail.com"
+                  href="#inquiry"
                   variant="primary"
                   size="lg"
                   magnetic
@@ -277,7 +277,7 @@ export function CinematicFooter() {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  Let's talk <span className="almoo-arrow">→</span>
+                  Start a project <span className="almoo-arrow">→</span>
                 </Button>
                 
                 <Button
@@ -328,7 +328,7 @@ export function CinematicFooter() {
                 </Button>
                 <Button
                   as="a"
-                  href="mailto:almoo.agency@gmail.com"
+                  href="#inquiry"
                   variant="ghost"
                   size="md"
                   className="footer-btn-secondary"

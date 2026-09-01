@@ -9,29 +9,31 @@ const projects = [
   {
     num: "01",
     category: "Digital Experience",
-    title: "Concept Project",
+    title: "Experimental Concept",
     year: "2026",
     desc: "An experimental web experience exploring interactive storytelling and motion design.",
     image: null,
     images: null,
     link: null,
+    isConcept: true,
   },
   {
     num: "02",
     category: "Web Application",
-    title: "Concept Project",
+    title: "Experimental Concept",
     year: "2026",
     desc: "A custom dashboard platform built for data-driven decision making.",
     image: null,
     images: null,
     link: null,
+    isConcept: true,
   },
   {
     num: "03",
     category: "Brand System",
-    title: "Concept Project",
+    title: "Jackpot Brand System",
     year: "2026",
-    desc: "A complete visual identity system from logo to digital touchpoints.",
+    desc: "A complete visual identity system from logo to digital touchpoints for a casino brand.",
     image: null,
     images: [
       { image: "/jackpot-brand.png", caption: "Home Page" },
@@ -42,6 +44,7 @@ const projects = [
       { image: "/jackpot-brand-6.png", caption: "Real reviwes" },
     ] as MorphItem[],
     link: "https://jackpotbd.vercel.app/",
+    isConcept: false,
   },
 ];
 
@@ -190,6 +193,25 @@ export default function Work() {
                       }}
                     >
                       {p.title}
+                      {p.isConcept && (
+                        <span
+                          style={{
+                            fontFamily: "var(--font-body)",
+                            fontWeight: 500,
+                            fontSize: "var(--text-xs)",
+                            color: "var(--color-muted)",
+                            textTransform: "none",
+                            letterSpacing: "0.06em",
+                            marginLeft: "var(--space-sm)",
+                            verticalAlign: "middle",
+                            border: "1px solid var(--color-rule)",
+                            borderRadius: "9999px",
+                            padding: "2px 8px",
+                          }}
+                        >
+                          Concept
+                        </span>
+                      )}
                     </h3>
                   </FadeIn>
                   <FadeIn direction="up" distance={10} duration={0.5} delay={0.15}>

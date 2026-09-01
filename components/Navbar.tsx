@@ -4,9 +4,11 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
 const NAV_LINKS = [
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
   { label: "About", href: "#philosophy" },
+  { label: "Services", href: "#services" },
+  { label: "Process", href: "#process" },
+  { label: "Work", href: "#work" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 export default function Navbar() {
@@ -120,7 +122,7 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center">
             <a
-              href="#contact"
+              href="#inquiry"
               className="nav-cta-editorial"
               style={{
                 fontFamily: "var(--font-body)",
@@ -137,7 +139,7 @@ export default function Navbar() {
                 transition: "all 350ms cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             >
-              Let&apos;s talk
+              Start a Project
               <span className="nav-cta-arrow-editorial" aria-hidden="true">→</span>
             </a>
           </div>
@@ -252,7 +254,7 @@ export default function Navbar() {
               </ul>
 
               <motion.a
-                href="#contact"
+                href="#inquiry"
                 onClick={() => setOpen(false)}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -277,7 +279,7 @@ export default function Navbar() {
                   marginTop: "var(--space-lg)",
                 }}
               >
-                Let&apos;s talk <span aria-hidden="true">→</span>
+                Start a Project <span aria-hidden="true">→</span>
               </motion.a>
             </nav>
           </motion.div>

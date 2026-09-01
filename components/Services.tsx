@@ -6,18 +6,18 @@ import { FadeIn, StaggerContainer, StaggerItem, MaskReveal } from "./ui/motion";
 const services = [
   {
     num: "01",
-    title: "Web",
-    desc: "Custom websites, web applications, and platforms built around your business.",
+    title: "Web Design & Development",
+    desc: "For businesses that need a website that communicates clearly, looks credible, and converts visitors into customers.",
   },
   {
     num: "02",
-    title: "App",
-    desc: "Native and cross-platform mobile applications designed for your users.",
+    title: "Web Applications",
+    desc: "For businesses that need custom digital products, dashboards, or platforms instead of generic off-the-shelf software.",
   },
   {
     num: "03",
     title: "Digital Growth",
-    desc: "SEO, strategy, and digital solutions that help your business reach further.",
+    desc: "For businesses that already have a digital presence but need better acquisition, user experience, or conversion performance.",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function Services() {
           {services.map((s, i) => (
             <StaggerItem key={s.num} direction="up" distance={25}>
               <a
-                href="#audit"
+                href="#inquiry"
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
                 onFocus={() => setHovered(i)}

@@ -1,956 +1,1462 @@
 
-তুমি এই website/project-এর একজন **Senior UX Content Strategist + UI/UX Information Architect + Conversion Copy Auditor** হিসেবে কাজ করবে।
 
-তোমার কাজ হলো পুরো website-এর **UI text, content structure, information hierarchy, messaging, CTA logic, section purpose এবং content placement** গভীরভাবে analyse করা এবং সম্পূর্ণ analysis:
+# Almoo Studio — Audit Fix & Production Implementation Prompt
 
-`details.md`
+You are now the **Lead Product Designer, UX Strategist, Conversion Architect, Senior Frontend Engineer, Accessibility Engineer, Motion Designer, and QA Engineer** responsible for implementing the attached Almoo Studio website audit.
 
-ফাইলে লিখে দেওয়া।
+The audit document is the source of truth for the problems.
 
-তোমার analysis শুধুমাত্র text-এর spelling বা grammar check হবে না।
+Your job is NOT to redesign the website randomly.
 
-তোমাকে বুঝতে হবে:
+Your job is to:
 
-**কোন text কোথায় আছে → কেন আছে → user কখন দেখবে → তার purpose কী → কোন text-এর পরে কোন information আসা উচিত → কোন CTA কোথায় যাবে → পুরো website-এর information flow কীভাবে কাজ করছে।**
+**Understand → Audit → Plan → Implement → Test → Iterate → Verify**
 
----
-
-# 1. Complete UI Text Inventory
-
-প্রথমে website-এর সব visible text সংগ্রহ করো।
-
-কিছুই বাদ দেবে না।
-
-Include:
-
-* Logo text
-* Navigation
-* Menu items
-* Breadcrumbs
-* Hero heading
-* Hero subtitle
-* Hero description
-* CTA buttons
-* Secondary CTA
-* Section headings
-* Section descriptions
-* Labels
-* Badges
-* Cards
-* Service names
-* Service descriptions
-* Product names
-* Portfolio text
-* Project descriptions
-* Stats
-* Testimonials
-* Quotes
-* Client names
-* FAQ
-* Form labels
-* Placeholder
-* Validation messages
-* Error messages
-* Success messages
-* Tooltips
-* Footer text
-* Social links text
-* Copyright
-* Legal text
-* Cookie text
-* Loading text
-* Empty states
-* 404 text
-* Modal text
-* Dropdown text
-* Mobile menu text
-* Hidden/conditional UI text
-
-Dynamic text থাকলে সেটাও identify করবে।
+until the identified conversion, UX, trust, content, responsive, accessibility, motion, and frontend problems are properly solved.
 
 ---
 
-# 2. UI Text Location Mapping
+# 1. PRIMARY OBJECTIVE
 
-প্রতিটি text কোথায় আছে সেটা map করো।
+Transform the current Almoo Studio website from:
 
-Format:
+> “A visually impressive agency website”
 
-| Text | Page | Section | Component | File | Element |
-| ---- | ---- | ------- | --------- | ---- | ------- |
+into:
 
-উদাহরণ:
+> “A visually impressive, credible, conversion-focused agency website that clearly explains who Almoo Studio serves, what problems it solves, why clients should trust it, what the process looks like, and exactly what happens when someone wants to work with Almoo.”
+
+The existing visual quality is already strong.
+
+**Do not destroy the existing art direction.**
+
+Preserve and improve:
+
+* editorial visual language
+* warm off-white background
+* Bricolage Grotesque typography
+* coral accent system
+* existing design tokens
+* existing motion language
+* GSAP usage
+* Motion usage
+* smooth transitions
+* responsive behavior
+* reduced-motion support
+* existing high-quality visual composition
+
+Improve the **conversion architecture**, not merely the aesthetics.
+
+---
+
+# 2. FIRST: READ THE ENTIRE PROJECT
+
+Before modifying anything:
+
+1. Inspect the entire repository.
+2. Read every relevant source file.
+3. Understand the current architecture.
+4. Identify all pages/routes.
+5. Identify all components.
+6. Identify all sections.
+7. Identify all shared UI components.
+8. Identify all animation systems.
+9. Identify the design token system.
+10. Identify all CTA implementations.
+11. Identify all forms.
+12. Identify all links.
+13. Identify all images/assets.
+14. Identify all placeholder content.
+15. Identify all existing project/case-study data.
+16. Identify all SEO metadata.
+17. Identify all accessibility implementations.
+18. Identify all responsive breakpoints.
+19. Identify all `mailto:` usage.
+20. Identify all duplicated sections/components.
+
+Do not start coding before understanding the architecture.
+
+---
+
+# 3. CREATE AN IMPLEMENTATION PLAN FIRST
+
+Before editing production code, create:
+
+`AUDIT_IMPLEMENTATION_PLAN.md`
+
+The plan must contain:
+
+## A. Current problem
+
+For every audit issue:
+
+* existing behavior
+* why it is a problem
+* affected component
+* affected file
+* expected solution
+
+## B. Implementation mapping
+
+For every problem specify:
 
 ```text
-"Let's work together"
-Page: Home
-Section: Hero
-Component: HeroCTA
-File: components/Hero.tsx
-Element: Button
+Problem
+↓
+Component
+↓
+File
+↓
+Change
+↓
+Expected outcome
+↓
+Verification method
 ```
 
-যতটা সম্ভব exact source location দাও।
-
----
-
-# 3. Website Information Architecture
-
-পুরো website-এর information hierarchy analyse করো।
+## C. Risk analysis
 
 Identify:
 
+* breaking changes
+* animation risks
+* responsive risks
+* SEO risks
+* accessibility risks
+* existing functionality risks
+
+Do not remove existing functionality without a clear reason.
+
+---
+
+# 4. HERO — REPOSITION COMPLETELY
+
+The current hero is visually strong but strategically unclear.
+
+The hero must immediately answer:
+
+1. Who is Almoo for?
+2. What does Almoo build?
+3. What outcome does Almoo create?
+4. Why should someone care?
+5. What should they do next?
+
+Do NOT use vague agency language such as:
+
+* We build amazing digital experiences
+* We create digital solutions
+* We transform businesses
+* We build the future
+* Innovative digital experiences
+
+unless backed by a specific proposition.
+
+---
+
+# 5. HERO STRUCTURE
+
+Implement a hierarchy similar to:
+
 ```text
-Website
-│
-├── Header
-│   ├── Logo
-│   ├── Navigation
-│   └── CTA
-│
-├── Hero
-│   ├── Eyebrow
-│   ├── H1
-│   ├── Description
-│   └── CTA
-│
-├── About
-│
-├── Services
-│
-├── Work / Portfolio
-│
-├── Process
-│
-├── Testimonials
-│
-├── FAQ
-│
-├── Contact CTA
-│
-└── Footer
+EYEBROW
+Who Almoo works with
+
+HEADLINE
+Specific transformation/outcome
+
+SUPPORTING COPY
+What Almoo actually does + why it matters
+
+PRIMARY CTA
+Start a project
+
+SECONDARY CTA
+See our work
+
+TRUST SIGNAL
+Selected work / availability / response time / relevant proof
 ```
 
-কিন্তু example copy করবে না।
+The headline must communicate:
 
-**Actual website-এর structure অনুযায়ী তৈরি করবে।**
+**Audience + Problem + Outcome**
 
----
+Example direction:
 
-# 4. প্রতিটি Section-এর Content Logic
+> Digital experiences built for businesses ready to grow beyond templates.
 
-প্রতিটি section-এর জন্য এই structure ব্যবহার করো:
+Do NOT blindly use this copy.
 
-## Section: [Name]
-
-### Purpose
-
-এই section কেন website-এ আছে?
-
-### User Question
-
-এই section user-এর কোন প্রশ্নের উত্তর দেয়?
-
-উদাহরণ:
-
-* Who are they?
-* What do they offer?
-* Why should I trust them?
-* How much does it cost?
-* How does it work?
-* What should I do next?
-
-### Content Hierarchy
-
-Identify:
-
-1. Eyebrow / Label
-2. Main heading
-3. Supporting text
-4. Visual content
-5. CTA
-6. Supporting information
-
-### Current Text
-
-বর্তমানে website-এ কী লেখা আছে তার summary দাও।
-
-### Text Role
-
-প্রতিটি text-এর role identify করো:
-
-* Awareness
-* Explanation
-* Trust
-* Differentiation
-* Conversion
-* Navigation
-* Education
-* Proof
-* Action
-
-### Information Flow
-
-এই section-এর information কীভাবে user-এর সামনে আসে সেটা explain করো।
-
-### Next Logical Step
-
-এই section দেখার পরে user logically কোথায় যাবে?
+Develop the strongest copy based on the actual services and positioning already present in the repository/audit.
 
 ---
 
-# 5. Heading Hierarchy Audit
+# 6. CTA ARCHITECTURE
 
-পুরো website-এর heading structure analyse করো।
+The current website relies heavily on `mailto:`.
 
-Check:
+Fix this.
 
-* H1
-* H2
-* H3
-* H4
-* Visual headings
-* Semantic headings
+Establish a clear CTA hierarchy.
 
-Identify:
+## Primary CTA
 
-* Multiple H1 আছে কিনা
-* H1 যথেষ্ট clear কিনা
-* H2 section purpose communicate করছে কিনা
-* Heading hierarchy logical কিনা
-* Heading unnecessarily long কিনা
-* Heading vague কিনা
+Use one consistent action:
 
-Table:
+> Start a Project
 
-| Page | Heading | Level | Purpose | Issue |
-| ---- | ------- | ----- | ------- | ----- |
+or another strategically stronger equivalent.
+
+## Secondary CTA
+
+Use:
+
+> View Our Work
+
+or equivalent.
+
+## Optional low-friction CTA
+
+Use:
+
+> Get a Free Website Audit
+
+ONLY if the audit offer is actually part of the business strategy.
+
+Do not allow multiple competing primary CTAs.
 
 ---
 
-# 6. Hero Content Audit
+# 7. REAL PROJECT-INQUIRY FLOW
 
-Hero section সবচেয়ে গুরুত্বপূর্ণভাবে analyse করো।
+Replace the current “every CTA → mailto” architecture.
 
-Identify:
+Create an actual project inquiry experience.
 
-### Eyebrow
-
-কেন আছে?
-
-### H1
-
-Website-এর primary value proposition কী?
-
-### Supporting text
-
-H1-এর meaning explain করছে কিনা?
-
-### Primary CTA
-
-User কোথায় যাবে?
-
-### Secondary CTA
-
-কেন দরকার?
-
-### Hero Information Flow
-
-এই sequence analyse করো:
+The preferred UX:
 
 ```text
-Attention
-↓
-Understanding
-↓
-Value Proposition
-↓
-Trust / Differentiation
-↓
 CTA
-```
-
-তারপর actual website এই flow follow করছে কিনা বলো।
-
----
-
-# 7. Navigation Text Logic
-
-Header/Navbar-এর প্রতিটি item analyse করো।
-
-For each:
-
-* Label
-* Destination
-* Purpose
-* Priority
-* User expectation
-* CTA কিনা
-* Naming clear কিনা
-
-Table:
-
-| Nav Item | Destination | Purpose | Priority | Recommendation |
-| -------- | ----------- | ------- | -------- | -------------- |
-
-Check:
-
-* Navigation naming
-* Ordering
-* Too many items
-* Missing important page
-* CTA placement
-* Mobile menu logic
-
----
-
-# 8. CTA Audit
-
-Website-এর **সব CTA** identify করো।
-
-Examples:
-
-* Get Started
-* Contact
-* Book
-* Learn More
-* View Work
-* Start Project
-* Buy Now
-* Sign Up
-
-প্রতিটি CTA-এর জন্য:
-
-| CTA | Location | Destination | User Intent | Primary/Secondary | Clarity |
-| --- | -------- | ----------- | ----------- | ----------------- | ------- |
-
-তারপর check করো:
-
-* CTA vague কিনা
-* CTA action-oriented কিনা
-* CTA destination-এর সাথে label match করে কিনা
-* একই CTA unnecessarily repeated কিনা
-* Important section-এ CTA missing কিনা
-
----
-
-# 9. Content Flow Across Entire Website
-
-পুরো website-এর user journey map করো।
-
-Example structure:
-
-```text
-Hero
 ↓
-What the company does
+Project Inquiry Section / Modal / Dedicated route
 ↓
-Why it matters
-↓
-Services
-↓
-Proof
-↓
-Process
-↓
-Portfolio
-↓
-Testimonials
-↓
-FAQ
-↓
-Final CTA
-↓
-Contact
-```
-
-Actual website-এর content অনুযায়ী flow তৈরি করবে।
-
-তারপর analyse করবে:
-
-### Does the flow make sense?
-
-* Yes / No
-
-### Where does user understand the business?
-
-### Where does trust develop?
-
-### Where does conversion intent begin?
-
-### Where can user become confused?
-
-### Where is information missing?
-
----
-
-# 10. Above-the-Fold Content Audit
-
-প্রথম viewport-এ কী কী information আছে analyse করো।
-
-Check:
-
-* Brand identity
-* What the company/person does
-* Target audience
-* Value proposition
-* CTA
-* Differentiator
-* Trust signal
-
-তারপর বলো:
-
-**একজন নতুন visitor প্রথম 5–10 seconds-এর মধ্যে website সম্পর্কে কী বুঝতে পারবে?**
-
----
-
-# 11. Content Completeness Audit
-
-প্রতিটি section-এর জন্য identify করো:
-
-### Present
-
-কী information আছে।
-
-### Missing
-
-কী information থাকা উচিত কিন্তু নেই।
-
-### Unnecessary
-
-কোন information user-এর জন্য unnecessary।
-
-### Weak
-
-কোন information আছে কিন্তু যথেষ্ট clear নয়।
-
-Table:
-
-| Section | Present | Missing | Unnecessary | Weak |
-| ------- | ------- | ------- | ----------- | ---- |
-
----
-
-# 12. Trust & Social Proof Content
-
-Website-এ থাকা trust-related text identify করো:
-
-* Client names
-* Client logos
-* Testimonials
-* Reviews
-* Numbers
-* Results
-* Certifications
-* Experience
-* Case studies
-* Awards
-* Partners
-* Technologies
-* Guarantees
-
-Analyse:
-
-* Trust কোথায় তৈরি হচ্ছে?
-* যথেষ্ট proof আছে কিনা?
-* Proof-এর placement logical কিনা?
-* Claim-এর সাথে evidence আছে কিনা?
-
----
-
-# 13. Service / Product Content Logic
-
-প্রতিটি service/product-এর content structure analyse করো।
-
-Identify:
-
-```text
-Service Name
-↓
-What it is
-↓
-Problem it solves
-↓
-What is included
-↓
-Benefit
-↓
-Proof
-↓
-CTA
-```
-
-Actual website এই structure follow করে কিনা analyse করো।
-
----
-
-# 14. Card Content Audit
-
-সব card analyse করো।
-
-যেমন:
-
-* Service cards
-* Portfolio cards
-* Blog cards
-* Team cards
-* Testimonial cards
-* Pricing cards
-
-For each card:
-
-* Label
-* Title
-* Description
-* Metadata
-* CTA
-* Supporting text
-
-Check:
-
-* Information hierarchy
-* Text length
-* Consistency
-* Duplicate information
-* Missing CTA
-* Unclear labels
-
----
-
-# 15. Form Content Audit
-
-সব form analyse করো।
-
-Check:
-
-* Form title
-* Description
-* Field labels
-* Placeholder
-* Required/optional indicator
-* CTA
-* Error message
-* Success message
-* Validation message
-* Privacy text
-
-Logic:
-
-```text
-User intent
-↓
-Question
-↓
-Input
+Form
 ↓
 Validation
 ↓
 Submission
 ↓
-Success / Error
+Success state
 ```
 
-এই flow document করো।
+The form should capture only information useful for qualification.
+
+Recommended fields:
+
+* Name
+* Email
+* Company / Brand
+* Website
+* What do you need?
+* Project type
+* Budget range
+* Timeline
+* Message
+
+Avoid unnecessary fields.
 
 ---
 
-# 16. FAQ Content Logic
+# 8. FORM UX
 
-FAQ থাকলে প্রতিটি question analyse করো।
+The form must include:
 
-For each:
+## States
 
-* Question
-* Answer purpose
-* User concern
-* Conversion relevance
-* Duplicate information
-* Missing question
+* idle
+* focused
+* validation error
+* submitting
+* success
+* server error
 
-তারপর identify করো:
+## Requirements
 
-**কোন প্রশ্নগুলো user naturally জিজ্ঞেস করতে পারে কিন্তু FAQ-তে নেই।**
+* accessible labels
+* keyboard navigation
+* clear validation
+* useful error messages
+* loading state
+* disabled submit state
+* success confirmation
+* mobile-friendly layout
 
----
+Never silently fail.
 
-# 17. Footer Content Audit
-
-Footer-এর সব text analyse করো।
-
-Check:
-
-* Brand description
-* Navigation
-* Services
-* Contact
-* Social links
-* Legal
-* Copyright
-* Newsletter
-* CTA
-
-Footer-এর information priority explain করো।
+Never rely only on placeholder text as labels.
 
 ---
 
-# 18. Microcopy Audit
+# 9. FORM BACKEND
 
-Small UI text ignore করবে না।
+Inspect the existing project architecture.
 
-Include:
+If there is already a backend/email infrastructure, integrate with it.
 
-* "Learn more"
-* "Read more"
-* "View project"
-* "Submit"
-* "Send"
-* "Close"
-* "Back"
-* "Next"
-* "Previous"
-* "Menu"
-* "Search"
-* Placeholder
-* Tooltip
-* Error
-* Success
+Otherwise design a clean abstraction:
 
-প্রতিটির clarity এবং consistency analyse করো।
+```text
+InquiryForm
+↓
+API endpoint / server action
+↓
+Validation
+↓
+Email / database
+```
 
----
+Use proper server-side validation.
 
-# 19. Copy Consistency Audit
+Do NOT expose private API keys in the client.
 
-পুরো website জুড়ে check করো:
+If business infrastructure is not available, implement the frontend and API abstraction cleanly and mark the external provider integration:
 
-### Terminology
+`NEEDS REAL BUSINESS DATA`
 
-একই জিনিসের জন্য different words ব্যবহার হচ্ছে কিনা।
-
-### Capitalization
-
-Consistency আছে কিনা।
-
-### CTA language
-
-একই action-এর জন্য multiple naming আছে কিনা।
-
-### Tone
-
-Professional / friendly / premium / technical / playful ইত্যাদি consistent কিনা।
-
-### Voice
-
-Brand-এর voice consistent কিনা।
+Do not invent credentials, email addresses, CRM IDs, or business information.
 
 ---
 
-# 20. Text Length & UI Fit
+# 10. REMOVE THE DUPLICATE AUDIT CTA
 
-Text UI-এর design-এর সাথে fit করছে কিনা analyse করো।
+The audit identified:
 
-Check:
+```text
+AuditCTA
+↓
+Contact
+↓
+Footer
+```
 
-* Heading too long
-* Paragraph too long
-* Button text too long
-* Card description too long
-* Mobile wrapping
-* Navigation overflow
-* Text truncation
-* Line breaks
-* awkward wrapping
+where the first two sections communicate essentially the same offer.
 
-বিশেষ করে responsive layout-এর জন্য সম্ভাব্য text overflow identify করো।
+Fix this.
 
----
+There should be ONE strong conversion section near the end.
 
-# 21. Responsive Content Audit
-
-Desktop বনাম mobile-এ text/content পরিবর্তন হচ্ছে কিনা analyse করো।
-
-Check:
-
-* Different heading
-* Hidden text
-* Shortened CTA
-* Mobile-only text
-* Navigation text
-* Responsive content
-* Text wrapping
-
-Table:
-
-| Component | Desktop | Tablet | Mobile | Issue |
-| --------- | ------- | ------ | ------ | ----- |
+Do not keep two visually different versions of the same CTA simply for visual variety.
 
 ---
 
-# 22. SEO Content Audit
+# 11. NEW FINAL CONVERSION SECTION
 
-UI text-এর SEO impact analyse করো।
+Create a single strong final CTA section.
 
-Check:
+Recommended structure:
 
-* H1
-* H2
-* Semantic text
-* Keyword relevance
-* Internal link anchor text
-* Image alt text
-* Page title
-* Meta description
-* Breadcrumb
-* Structured content
+```text
+Eyebrow
 
-**Keyword stuffing recommend করবে না।**
+Headline:
+Have a project in mind?
 
----
+Supporting copy:
+Briefly explain what happens next.
 
-# 23. Accessibility Content Audit
+Primary CTA:
+Start a Project
 
-Check:
+Secondary:
+View Work
 
-* Link text meaningful কিনা
-* Button text meaningful কিনা
-* Heading hierarchy
-* Form labels
-* Placeholder dependency
-* ARIA labels
-* Icon-only buttons
-* Screen-reader text
-* Error messaging
+Trust/expectation:
+Response time / no-pressure consultation / next-step information
+```
 
-বিশেষ করে:
+Only use factual claims.
 
-`Click here`
+If response time or consultation policy is unknown:
 
-`Read more`
+`NEEDS REAL BUSINESS DATA`
 
-এর মতো contextless text থাকলে identify করো।
+Do not invent them.
 
 ---
 
-# 24. Conversion Logic Audit
+# 12. TRUST LAYER
 
-প্রতিটি major section-এর conversion role identify করো।
+The current website has weak proof.
+
+Build a dedicated trust layer.
+
+Potential structure:
+
+```text
+Selected Work
+↓
+Case Study
+↓
+Results / impact
+↓
+Process
+↓
+Testimonials / logos
+↓
+FAQ
+↓
+CTA
+```
+
+Do not fabricate:
+
+* clients
+* testimonials
+* metrics
+* revenue
+* conversion percentages
+* awards
+* partnerships
+* logos
+* results
+
+Anything requiring real business information must be marked:
+
+`NEEDS REAL BUSINESS DATA`
+
+---
+
+# 13. CASE STUDY SECTION
+
+Use the strongest real existing project in the repository.
+
+Do not call placeholder projects “case studies”.
+
+A proper case study should communicate:
+
+```text
+Client / Project
+↓
+Problem
+↓
+Approach
+↓
+What Almoo built
+↓
+Key decisions
+↓
+Outcome
+```
+
+If outcome metrics do not exist:
+
+DO NOT invent them.
+
+Instead use qualitative outcomes such as:
+
+* redesigned experience
+* improved structure
+* clearer navigation
+* responsive implementation
+
+only when supported by the actual project.
+
+---
+
+# 14. REMOVE OR FIX FAKE PROJECT PLACEHOLDERS
+
+Current placeholders such as:
+
+> Concept Project
+
+should NOT create the impression that they are real client work.
+
+Choose one:
+
+### Option A
+
+Replace with real projects.
+
+### Option B
+
+Clearly label them:
+
+> Experimental Concept
+
+### Option C
+
+Remove them.
+
+Never present fictional work as client work.
+
+---
+
+# 15. PROCESS SECTION
+
+Add a concrete process section.
+
+The visitor should understand what happens after contacting Almoo.
+
+Suggested structure:
+
+```text
+01 — Discover
+Understand goals, audience, problems and requirements.
+
+02 — Define
+Create strategy, structure and direction.
+
+03 — Design
+Develop the visual and interaction system.
+
+04 — Build
+Implement the production experience.
+
+05 — Launch
+Test, refine and launch.
+
+06 — Grow
+Optional ongoing optimization and support.
+```
+
+Adapt the actual process to Almoo's real services.
+
+Do not invent services that the agency does not actually provide.
+
+---
+
+# 16. PROCESS MUST INCLUDE DELIVERABLES
+
+Do not make the process generic.
+
+Each phase should optionally explain:
+
+```text
+What happens
+What you receive
+What decision is made
+```
+
+Example:
+
+```text
+Discover
+
+We clarify:
+- goals
+- audience
+- business requirements
+- technical constraints
+
+You receive:
+- project direction
+- requirements
+- scope
+```
+
+This reduces uncertainty and objections.
+
+---
+
+# 17. SERVICES SECTION
+
+Rewrite service presentation around outcomes rather than category dumping.
+
+Instead of:
+
+```text
+Websites
+Web Apps
+Digital Growth
+```
+
+structure services around problems/outcomes.
+
+For example:
+
+```text
+01
+Web Design & Development
+
+For businesses that need a website that communicates clearly,
+looks credible and converts attention into action.
+
+02
+Web Applications
+
+For businesses that need custom digital products instead of
+generic software.
+
+03
+Digital Growth
+
+For businesses that already have a digital presence but need
+better acquisition, UX or conversion.
+```
+
+Do not copy these exact words if the actual Almoo offering differs.
+
+---
+
+# 18. ADD OBJECTION HANDLING
+
+Create an FAQ section.
+
+Questions should address real purchase objections.
+
+Potential questions:
+
+* What kind of projects do you work on?
+* How does a project start?
+* How long does a project take?
+* Do you work with existing websites?
+* Can you redesign an existing website?
+* Do you provide ongoing maintenance?
+* Can you work with our existing brand?
+* What happens after I submit an inquiry?
+* What information should I prepare before contacting you?
+
+Only provide factual answers.
 
 Use:
 
-* Awareness
-* Interest
-* Consideration
-* Trust
-* Conversion
-* Retention
+`NEEDS REAL BUSINESS DATA`
 
-প্রতিটি section কোন stage-এ কাজ করছে সেটা document করো।
+where required.
 
 ---
 
-# 25. Content Dependency Map
+# 19. NAVIGATION
 
-একটি logical dependency map তৈরি করো।
+Review the navbar.
 
-উদাহরণ:
+The navigation should prioritize:
 
 ```text
-Hero
- ↓
-User understands service
- ↓
-Services explain offer
- ↓
-Portfolio provides proof
- ↓
-Testimonials build trust
- ↓
-FAQ removes objections
- ↓
-CTA converts
+Work
+Services
+Process
+About
+FAQ
+Start a Project
 ```
 
-Actual website অনুযায়ী তৈরি করবে।
+Do not overcrowd the navbar.
 
----
+The primary CTA should visually stand apart.
 
-# 26. Missing Content Report
-
-Website ভালোভাবে কাজ করার জন্য সম্ভাব্য missing content identify করো।
-
-Categories:
-
-### Critical Missing
-
-User understanding/conversion-এর জন্য গুরুত্বপূর্ণ।
-
-### Recommended
-
-UX উন্নত করবে।
-
-### Optional
-
-Extra value দিতে পারে।
-
-প্রতিটির সাথে explain করবে:
-
-* কেন দরকার
-* কোথায় রাখা উচিত
-* কোন section-এর পরে রাখা উচিত
-* কী ধরনের information থাকা উচিত
-
----
-
-# 27. Content Placement Recommendations
-
-এখানে নতুন content লিখবে না।
-
-বরং **কোন information কোথায় থাকা উচিত** সেটা recommend করবে।
-
-Format:
-
-| Information | Current Location | Recommended Location | Reason |
-| ----------- | ---------------- | -------------------- | ------ |
-
-Example logic:
+On mobile:
 
 ```text
-Pricing
-Current: Footer
-Recommended: Services section-এর পরে
-Reason: User service বুঝে pricing জানতে চাইতে পারে
+Menu
+↓
+navigation
+↓
+primary CTA
 ```
 
----
-
-# 28. Complete UI Content Map
-
-শেষে master map তৈরি করো:
-
-| Order | Page | Section | Element | Text Type | Purpose | Destination |
-| ----- | ---- | ------- | ------- | --------- | ------- | ----------- |
-
-Website-এর সব major UI text এখানে map করবে।
+Ensure keyboard accessibility.
 
 ---
 
-# 29. Ideal Information Architecture
+# 20. PAGE FLOW
 
-বর্তমান website analyse করার পরে একটি proposed ideal structure দাও।
-
-Format:
+Rebuild the page journey around this logic:
 
 ```text
-01 — Header
-02 — Hero
-03 — Value Proposition
-04 — Services
-05 — Why Choose Us
-06 — Portfolio / Proof
-07 — Process
-08 — Testimonials
-09 — FAQ
-10 — Final CTA
-11 — Footer
+01 Hero
+   ↓
+02 Immediate positioning
+   ↓
+03 Problem / pain
+   ↓
+04 Services / solution
+   ↓
+05 Selected work
+   ↓
+06 Case study
+   ↓
+07 Process
+   ↓
+08 Trust
+   ↓
+09 FAQ
+   ↓
+10 Final CTA
+   ↓
+11 Footer
 ```
 
-**Actual website অনুযায়ী structure তৈরি করবে।**
+Do not treat this as a mandatory visual layout.
 
-প্রতিটি section-এর পাশে লিখবে:
-
-* Purpose
-* Required information
-* CTA
-* User question answered
+The purpose is to create a logical persuasion sequence.
 
 ---
 
-# 30. Final Content Audit Score
+# 21. ADD A PROBLEM / PAIN SECTION
 
-শেষে website-এর content-এর জন্য score দাও:
+The current site explains what Almoo does but not strongly enough why someone needs it.
 
-| Category              | Score / 10 | Reason |
-| --------------------- | ---------: | ------ |
-| Clarity               |            |        |
-| Information Hierarchy |            |        |
-| Content Completeness  |            |        |
-| CTA Clarity           |            |        |
-| Navigation            |            |        |
-| Conversion Flow       |            |        |
-| Trust                 |            |        |
-| Consistency           |            |        |
-| Accessibility         |            |        |
-| Mobile Content        |            |        |
-| SEO Content           |            |        |
+Create a concise section addressing problems such as:
 
-তারপর:
+* outdated website
+* template-like presence
+* confusing UX
+* weak conversion
+* disconnected brand and website
+* lack of a scalable digital foundation
 
-## Overall Content Score
+Only include problems Almoo genuinely solves.
 
-`X/10`
+Structure:
 
-দাও।
-
----
-
-# 31. Final Findings
-
-শেষে চারটি category:
-
-### 🔴 Critical Problems
-
-যেগুলো fix করা জরুরি।
-
-### 🟠 UX / Content Problems
-
-যেগুলো user experience কমাচ্ছে।
-
-### 🟢 Good Content Decisions
-
-যেগুলো ভালোভাবে করা হয়েছে।
-
-### 🔵 Recommended Improvements
-
-পরবর্তীতে implement করলে website আরও ভালো হবে।
+```text
+Problem
+↓
+Why it matters
+↓
+Almoo's approach
+```
 
 ---
 
-# FINAL RULE
+# 22. TRUST BEFORE HIGH-FRICTION CTA
 
-তুমি **নিজে থেকে marketing copy লিখে replace করবে না**।
+Do not ask for a project inquiry immediately after generic marketing copy.
 
-এই task-এর উদ্দেশ্য হলো:
+The visitor should encounter:
 
-**AUDIT + STRUCTURE + LOGIC + PLACEMENT + INFORMATION ARCHITECTURE**
+```text
+Positioning
+↓
+Value
+↓
+Work
+↓
+Proof
+↓
+Process
+↓
+Objection handling
+↓
+CTA
+```
 
-অর্থাৎ:
+The CTA should feel like the natural conclusion.
 
-> "কী লেখা আছে"
+---
+
+# 23. MOTION RULES
+
+Preserve Almoo's existing animation quality.
+
+Do NOT add animation everywhere.
+
+Every animation must have a purpose:
+
+* hierarchy
+* continuity
+* feedback
+* reveal
+* storytelling
+
+Avoid:
+
+* excessive parallax
+* excessive text scrambling
+* unnecessary hover effects
+* long blocking animations
+* motion that delays CTA visibility
+* animation that reduces readability
+
+Respect:
+
+```css
+prefers-reduced-motion
+```
+
+for every newly introduced animation.
+
+---
+
+# 24. CONVERSION-CRITICAL ELEMENTS MUST NOT BE HIDDEN
+
+Do not hide primary messaging or CTA behind:
+
+* long loading sequences
+* scroll-only reveals
+* hover-only interactions
+* complex animations
+* inaccessible carousels
+
+The primary value proposition must be available immediately.
+
+---
+
+# 25. RESPONSIVE IMPLEMENTATION
+
+Test at minimum:
+
+```text
+320px
+375px
+390px
+430px
+768px
+1024px
+1280px
+1440px
+1920px
+```
+
+Check:
+
+* typography
+* spacing
+* horizontal overflow
+* navigation
+* CTA visibility
+* form
+* cards
+* case study
+* images
+* footer
+* animations
+* touch targets
+
+No horizontal scroll should exist unless intentionally designed.
+
+---
+
+# 26. MOBILE CONVERSION
+
+Mobile must not be treated as a smaller desktop.
+
+Ensure:
+
+* primary CTA is obvious
+* headline wraps naturally
+* form is comfortable
+* buttons are touch-friendly
+* navigation is easy
+* sections don't become excessively tall
+* important content appears before decorative content
+
+---
+
+# 27. ACCESSIBILITY
+
+Audit all changed components.
+
+Check:
+
+* semantic HTML
+* heading hierarchy
+* labels
+* keyboard navigation
+* focus states
+* contrast
+* ARIA only when necessary
+* buttons vs links
+* form errors
+* screen-reader meaning
+* reduced motion
+* touch target sizes
+
+Do not use ARIA to compensate for incorrect HTML.
+
+---
+
+# 28. SEO
+
+After structural changes, verify:
+
+* title
+* description
+* canonical
+* Open Graph
+* Twitter/X metadata
+* semantic headings
+* internal links
+* image alt text
+* robots
+* sitemap
+* structured data where appropriate
+
+Do not keyword-stuff.
+
+Use natural agency positioning.
+
+---
+
+# 29. PERFORMANCE
+
+Do not sacrifice performance for visual effects.
+
+Review:
+
+* image optimization
+* lazy loading
+* font loading
+* GSAP usage
+* Motion usage
+* client components
+* hydration
+* bundle size
+* unnecessary JavaScript
+* layout shifts
+
+Prefer server components where appropriate.
+
+Do not convert everything to client components.
+
+---
+
+# 30. COMPONENT ARCHITECTURE
+
+Do not create a giant page component.
+
+Keep sections modular.
+
+Example:
+
+```text
+components/
+  hero/
+  positioning/
+  services/
+  work/
+  case-study/
+  process/
+  trust/
+  faq/
+  inquiry/
+  footer/
+```
+
+Adapt to the existing project architecture rather than blindly restructuring everything.
+
+Reuse existing components where appropriate.
+
+Avoid duplicate UI implementations.
+
+---
+
+# 31. CONTENT SYSTEM
+
+Do not hardcode repeated business content across multiple components.
+
+Create a clean content/data layer when appropriate.
+
+For example:
+
+```ts
+services
+projects
+processSteps
+faqs
+testimonials
+```
+
+This makes future CMS/API integration easier.
+
+---
+
+# 32. REAL BUSINESS DATA POLICY
+
+This is extremely important.
+
+NEVER fabricate:
+
+* client names
+* testimonials
+* project metrics
+* project revenue
+* conversion rates
+* awards
+* client logos
+* years of experience
+* number of clients
+* response times
+* pricing
+* guarantees
+* partnerships
+
+If the site needs any of these:
+
+```text
+NEEDS REAL BUSINESS DATA
+```
+
+Document the required information in:
+
+`BUSINESS_DATA_REQUIRED.md`
+
+---
+
+# 33. BUSINESS DATA FILE
+
+Create:
+
+`BUSINESS_DATA_REQUIRED.md`
+
+Structure:
+
+```text
+# Required Business Data
+
+## Brand
+- official positioning
+- official tagline
+- location
+- contact email
+
+## Clients
+- client names
+- logos
+- permissions
+
+## Case Studies
+- client
+- problem
+- solution
+- outcome
+- metrics
+
+## Testimonials
+- quote
+- person
+- company
+- permission
+
+## Process
+- actual workflow
+- estimated timeline
+
+## Commercial
+- starting budget
+- payment structure
+- availability
+```
+
+Only list information genuinely needed by the implementation.
+
+---
+
+# 34. DO NOT OVER-DESIGN
+
+The existing website is already visually sophisticated.
+
+Avoid:
+
+* adding random gradients
+* adding unnecessary glassmorphism
+* adding excessive cards
+* adding huge amounts of text
+* adding generic agency sections
+* adding fake statistics
+* adding decorative UI without strategic purpose
+
+Every section must answer:
+
+> Why does this exist?
+
+If there is no good answer, remove or simplify it.
+
+---
+
+# 35. VISUAL HIERARCHY
+
+The visitor should visually understand:
+
+```text
+Most important
+↓
+Headline
+↓
+Primary CTA
+↓
+Proof
+↓
+Supporting information
+↓
+Secondary content
+↓
+Decoration
+```
+
+Decorative elements must never compete with conversion-critical content.
+
+---
+
+# 36. CTA CONSISTENCY
+
+Audit every CTA across the entire repository.
+
+Find:
+
+```text
+mailto:
+Contact
+Get Started
+Let's Talk
+Start
+Book
+Audit
+```
+
+Determine whether each CTA has a clear purpose.
+
+Create a consistent CTA system.
+
+Avoid having five different labels for the same action.
+
+---
+
+# 37. REMOVE DEAD-ENDS
+
+Find every place where the user can reach a dead end.
+
+Examples:
+
+```text
+project card → nowhere
+CTA → mailto only
+service → no next step
+case study → incomplete
+footer → no useful action
+```
+
+Every important interaction should have a meaningful destination.
+
+---
+
+# 38. TEST WITH PLAYWRIGHT
+
+After implementation, use browser automation to test:
+
+### Desktop
+
+* navbar
+* every CTA
+* every link
+* project cards
+* forms
+* FAQ
+* footer
+
+### Mobile
+
+* menu
+* navigation
+* buttons
+* form
+* scrolling
+* touch interactions
+
+Test actual user flows.
+
+---
+
+# 39. TEST THE PRIMARY CONVERSION JOURNEY
+
+Simulate a completely new visitor:
+
+```text
+Open homepage
+↓
+Understand positioning
+↓
+Understand services
+↓
+See proof
+↓
+Understand process
+↓
+Read FAQ
+↓
+Click Start a Project
+↓
+Complete form
+↓
+Submit
+↓
+Receive success state
+```
+
+At every step ask:
+
+> Is the next action obvious?
+
+If not, fix it.
+
+---
+
+# 40. USE LIGHTHOUSE / DEVTOOLS
+
+After implementation:
+
+Run performance/accessibility/SEO checks.
+
+Target:
+
+```text
+Performance: 90+
+Accessibility: 95+
+Best Practices: 95+
+SEO: 95+
+```
+
+These are targets, not reasons to add hacks.
+
+Do not manipulate Lighthouse scores artificially.
+
+Fix actual problems.
+
+---
+
+# 41. FINAL QA REPORT
+
+Create:
+
+`AUDIT_IMPLEMENTATION_REPORT.md`
+
+Include:
+
+## Fixed
+
+Every solved audit issue.
+
+## Partially Fixed
+
+Anything blocked by missing business data.
+
+## Needs Business Data
+
+Everything marked:
+
+`NEEDS REAL BUSINESS DATA`
+
+## Remaining Technical Issues
+
+Any unresolved frontend issue.
+
+## UX Changes
+
+Explain the conversion journey before vs after.
+
+## Files Changed
+
+List every modified/created file.
+
+## Testing
+
+Include:
+
+* build
+* lint
+* typecheck
+* browser testing
+* responsive testing
+* accessibility
+* performance
+* SEO
+
+---
+
+# 42. IMPORTANT DEVELOPMENT RULE
+
+Do not blindly implement every suggestion in the audit.
+
+Use judgment.
+
+The priority is:
+
+```text
+Conversion
 >
-> * "কোথায় লেখা আছে"
-> * "কেন সেখানে আছে"
-> * "এর আগে/পরে কী থাকা উচিত"
-> * "user কী বুঝবে"
-> * "কোন information missing"
-> * "কোন CTA কোথায় যাওয়া উচিত"
+Understanding
+>
+Trust
+>
+Navigation
+>
+Visual Hierarchy
+>
+Accessibility
+>
+Performance
+>
+Polish
+```
 
-সবকিছু `details.md`-এ document করবে।
+When two recommendations conflict, follow the higher priority.
 
-Source code-এর বাইরে কোনো information invent করবে না।
+---
 
-যেখানে source থেকে নিশ্চিত হওয়া যায় না সেখানে:
+# 43. DO NOT BREAK EXISTING DESIGN SYSTEM
 
-`Not determinable from source`
+Before creating new styles:
 
-লিখবে।
+Inspect:
 
-শেষে আমাকে শুধু report করবে:
+```text
+tokens.css
+Tailwind configuration
+global styles
+typography
+spacing
+colors
+animation tokens
+```
 
-* `details.md` তৈরি হয়েছে কিনা
-* কতটি page analyse করা হয়েছে
-* কতটি section analyse করা হয়েছে
-* কতটি UI text element analyse করা হয়েছে
-* কতটি CTA পাওয়া গেছে
-* কতটি missing-content issue পাওয়া গেছে
-* কতটি critical issue পাওয়া গেছে
-* Overall content score
+Reuse the existing design system.
+
+Only introduce new tokens when necessary.
+
+---
+
+# 44. DO NOT CHANGE THE STACK UNNECESSARILY
+
+Keep:
+
+```text
+Next.js
+React
+TypeScript
+Tailwind
+GSAP
+Motion
+existing design system
+```
+
+Do not migrate frameworks.
+
+Do not replace animation libraries.
+
+Do not introduce unnecessary dependencies.
+
+If a new dependency is genuinely necessary, explain why before adding it.
+
+---
+
+# 45. IMPLEMENTATION ORDER
+
+Implement in this order:
+
+```text
+1. Architecture analysis
+2. Content/positioning
+3. Hero
+4. CTA system
+5. Inquiry flow
+6. Duplicate CTA removal
+7. Services
+8. Work / case study
+9. Process
+10. Trust
+11. FAQ
+12. Navigation
+13. Responsive
+14. Accessibility
+15. SEO
+16. Performance
+17. Animation refinement
+18. Browser testing
+19. Lighthouse audit
+20. Final QA
+```
+
+Do not polish animations before fixing conversion architecture.
+
+---
+
+# 46. ITERATION LOOP
+
+After each major implementation phase:
+
+```text
+Implement
+↓
+Run typecheck
+↓
+Run lint
+↓
+Run build
+↓
+Open in browser
+↓
+Test
+↓
+Fix
+↓
+Continue
+```
+
+Do not accumulate dozens of untested changes.
+
+---
+
+# 47. FINAL SUCCESS CRITERIA
+
+The implementation is complete only when a first-time visitor can answer these questions within the first part of the page:
+
+### WHO?
+
+Who does Almoo work with?
+
+### WHAT?
+
+What does Almoo actually build?
+
+### WHY?
+
+What problem does Almoo solve?
+
+### WHY ALMOO?
+
+What evidence/proof exists?
+
+### HOW?
+
+What happens if I work with Almoo?
+
+### NEXT?
+
+How do I start?
+
+If any answer remains unclear, continue improving the implementation.
+
+---
+
+# 48. FINAL COMMAND
+
+Now perform the work.
+
+Start by:
+
+1. Reading the entire repository.
+2. Reading the audit document completely.
+3. Mapping every audit problem to actual files/components.
+4. Creating `AUDIT_IMPLEMENTATION_PLAN.md`.
+5. Creating `BUSINESS_DATA_REQUIRED.md`.
+6. Implementing the highest-impact conversion fixes first.
+7. Preserving the existing art direction.
+8. Testing every major interaction.
+9. Running typecheck/lint/build.
+10. Testing responsive layouts.
+11. Testing the complete project inquiry journey.
+12. Running performance/accessibility/SEO validation.
+13. Creating `AUDIT_IMPLEMENTATION_REPORT.md`.
+
+Do not stop after making visual changes.
+
+The final result must be a **production-ready, conversion-focused Almoo Studio agency website**, not merely a prettier version of the existing website.
+
+If real business information is missing, do not invent it.
+
+Mark it clearly as:
+
+`NEEDS REAL BUSINESS DATA`
+
+and continue implementing everything that can be completed safely without it.
