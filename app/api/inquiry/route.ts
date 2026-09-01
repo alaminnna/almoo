@@ -213,10 +213,12 @@ export async function POST(request: NextRequest) {
 
   // If internal email failed, the inquiry didn't reach Almoo
   if (!internalResult.ok) {
+    console.error("[inquiry] Internal email failed:", internalResult.error);
     return NextResponse.json(
       {
         success: false,
         error: "Unable to send inquiry. Please try again or contact us directly.",
+        detail: internalResult.error,
         internalEmailSent: false,
         confirmationEmailSent: confirmationResult.ok,
       },

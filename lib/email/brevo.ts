@@ -50,16 +50,17 @@ async function sendBrevoEmail(payload: {
       }),
     });
 
+    const body = await res.text();
+
     if (!res.ok) {
-      const body = await res.text();
       console.error("[brevo] API error:", res.status, body);
-      return { ok: false, error: "Failed to send email" };
+      return { ok: false, error: `Brevo error ${res.status}: ${body}` };
     }
 
     return { ok: true };
   } catch (err) {
     console.error("[brevo] Network error:", err);
-    return { ok: false, error: "Email service unavailable" };
+    return { ok: false, error: `Network error: ${String(err)}` };
   }
 }
 

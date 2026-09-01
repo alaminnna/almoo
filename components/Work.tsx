@@ -57,258 +57,315 @@ const projects = [
   },
 ];
 
+const STYLES = `
+/* ── Work section mobile-first ── */
+.work-article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.work-meta {
+  padding-top: var(--space-xs);
+}
+
+.work-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+.work-media video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+}
+
+.work-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.work-concept-badge {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  text-transform: none;
+  letter-spacing: 0.06em;
+  margin-left: var(--space-sm);
+  vertical-align: middle;
+  border: 1px solid var(--color-rule);
+  border-radius: 9999px;
+  padding: 2px 8px;
+}
+
+.work-video-wrapper {
+  width: 100%;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+  overflow: hidden;
+}
+
+/* ── Mobile: single column, stacked layout ── */
+@media (max-width: 640px) {
+  .work-article {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .work-meta {
+    padding-top: 0;
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+  }
+
+  .work-media {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .work-media video {
+    border-radius: var(--radius-sm);
+  }
+
+  .work-title-row {
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+
+  .work-video-wrapper {
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .work-concept-badge {
+    margin-left: 0;
+    margin-top: var(--space-2xs);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-media video {
+    display: none;
+  }
+}
+`;
+
 export default function Work() {
   return (
-    <section
-      id="work"
-      className="container-narrow"
-      style={{ paddingBlock: "var(--space-4xl)" }}
-    >
-      <MaskReveal direction="up" duration={0.9} delay={0}>
-        <h2 className="display-md" style={{ marginBottom: "var(--space-3xl)" }}>
-          Selected work<span style={{ color: "var(--color-accent)" }}>.</span>
-        </h2>
-      </MaskReveal>
+    <>
+      <style dangerouslySetInnerHTML={{ __html: STYLES }} />
 
-      <StaggerContainer
-        stagger={0.15}
-        delay={0.1}
-        className="flex flex-col"
-        style={{ gap: "var(--space-3xl)" }}
+      <section
+        id="work"
+        className="container-narrow"
+        style={{ paddingBlock: "var(--space-4xl)" }}
       >
-        {projects.map((p, i) => (
-          <StaggerItem key={p.num} direction="up" distance={30}>
-            <article
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto 1fr",
-                gap: "var(--space-xl)",
-                alignItems: "start",
-              }}
-            >
-              {/* Number + category */}
-              <div style={{ paddingTop: "var(--space-xs)" }}>
-                <FadeIn direction="up" distance={10} duration={0.5} delay={0.1}>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontWeight: 500,
-                      fontSize: "var(--text-sm)",
-                      color: "var(--color-muted)",
-                      letterSpacing: "0.08em",
-                      fontVariantNumeric: "tabular-nums",
-                    }}
-                  >
-                    {p.num}
-                  </span>
-                </FadeIn>
-                <FadeIn direction="up" distance={8} duration={0.5} delay={0.15}>
-                  <p
-                    className="label"
-                    style={{
-                      marginTop: "var(--space-2xs)",
-                      color: "var(--color-accent)",
-                    }}
-                  >
-                    {p.category}
-                  </p>
-                </FadeIn>
-              </div>
+        <MaskReveal direction="up" duration={0.9} delay={0}>
+          <h2 className="display-md" style={{ marginBottom: "var(--space-3xl)" }}>
+            Selected work<span style={{ color: "var(--color-accent)" }}>.</span>
+          </h2>
+        </MaskReveal>
 
-              {/* Content */}
-              <div>
-                {/* Project image placeholder */}
-                <ScaleReveal from={1.05} to={1} duration={0.9} delay={0.05}>
-                  <div
-                    style={{
-                      width: "100%",
-                      aspectRatio: "16 / 9",
-                      borderRadius: "var(--radius-md)",
-                      marginBottom: "var(--space-lg)",
-                      overflow: "hidden",
-                      position: "relative",
-                    }}
-                  >
-                    {p.images ? (
-                      <MorphSlider
-                        items={p.images}
-                        transition="melt"
-                        duration={1.1}
-                        autoplay
-                        autoplayDelay={4}
-                        loop
-                        radius={16}
-                        showControls
-                        showIndicators
-                        showCaptions
-                        style={{ width: "100%", height: "100%" }}
-                      />
-                    ) : p.image ? (
-                      <img
-                        src={p.image}
-                        alt={`${p.category} project`}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          borderRadius: "var(--radius-md)",
-                        }}
-                      />
-                    ) : (
-                      <div
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          background: `linear-gradient(135deg, var(--color-paper-3) 0%, var(--color-paper-2) 100%)`,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontFamily: "var(--font-display)",
-                            fontWeight: 800,
-                            fontSize: "var(--text-3xl)",
-                            color: "var(--color-rule)",
-                            letterSpacing: "-0.02em",
-                            textTransform: "lowercase",
-                          }}
-                        >
-                          {p.category.toLowerCase()}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </ScaleReveal>
-
-                {/* Project video */}
-                {p.video && (
-                  <ScaleReveal from={1.03} to={1} duration={0.8} delay={0.1}>
-                    <div
-                      style={{
-                        width: "100%",
-                        borderRadius: "var(--radius-md)",
-                        marginBottom: "var(--space-lg)",
-                        overflow: "hidden",
-                      }}
-                    >
-                      <video
-                        src={p.video}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          display: "block",
-                          borderRadius: "var(--radius-md)",
-                        }}
-                      />
-                    </div>
-                  </ScaleReveal>
-                )}
-
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "baseline",
-                    justifyContent: "space-between",
-                    gap: "var(--space-md)",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  <FadeIn direction="up" distance={15} duration={0.6} delay={0.1}>
-                    <h3
-                      style={{
-                        fontFamily: "var(--font-display)",
-                        fontWeight: 800,
-                        fontSize: "var(--text-2xl)",
-                        letterSpacing: "-0.02em",
-                        textTransform: "lowercase",
-                      }}
-                    >
-                      {p.title}
-                      {p.isConcept && (
-                        <span
-                          style={{
-                            fontFamily: "var(--font-body)",
-                            fontWeight: 500,
-                            fontSize: "var(--text-xs)",
-                            color: "var(--color-muted)",
-                            textTransform: "none",
-                            letterSpacing: "0.06em",
-                            marginLeft: "var(--space-sm)",
-                            verticalAlign: "middle",
-                            border: "1px solid var(--color-rule)",
-                            borderRadius: "9999px",
-                            padding: "2px 8px",
-                          }}
-                        >
-                          Concept
-                        </span>
-                      )}
-                    </h3>
-                  </FadeIn>
-                  <FadeIn direction="up" distance={10} duration={0.5} delay={0.15}>
+        <StaggerContainer
+          stagger={0.15}
+          delay={0.1}
+          className="flex flex-col"
+          style={{ gap: "var(--space-3xl)" }}
+        >
+          {projects.map((p) => (
+            <StaggerItem key={p.num} direction="up" distance={30}>
+              <article className="work-article">
+                {/* Number + category */}
+                <div className="work-meta">
+                  <FadeIn direction="up" distance={10} duration={0.5} delay={0.1}>
                     <span
                       style={{
                         fontFamily: "var(--font-body)",
                         fontWeight: 500,
                         fontSize: "var(--text-sm)",
                         color: "var(--color-muted)",
+                        letterSpacing: "0.08em",
                         fontVariantNumeric: "tabular-nums",
                       }}
                     >
-                      {p.year}
+                      {p.num}
                     </span>
+                  </FadeIn>
+                  <FadeIn direction="up" distance={8} duration={0.5} delay={0.15}>
+                    <p
+                      className="label"
+                      style={{
+                        marginTop: "var(--space-2xs)",
+                        color: "var(--color-accent)",
+                      }}
+                    >
+                      {p.category}
+                    </p>
                   </FadeIn>
                 </div>
 
-                <FadeIn direction="up" distance={12} duration={0.6} delay={0.2}>
-                  <p
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: "var(--text-base)",
-                      color: "var(--color-ink-2)",
-                      lineHeight: 1.5,
-                      marginTop: "var(--space-sm)",
-                      maxWidth: "52ch",
-                    }}
-                  >
-                    {p.desc}
-                  </p>
-                </FadeIn>
+                {/* Content */}
+                <div>
+                  {/* Project images */}
+                  <ScaleReveal from={1.05} to={1} duration={0.9} delay={0.05}>
+                    <div className="work-media">
+                      {p.images ? (
+                        <MorphSlider
+                          items={p.images}
+                          transition="melt"
+                          duration={1.1}
+                          autoplay
+                          autoplayDelay={4}
+                          loop
+                          radius={16}
+                          showControls
+                          showIndicators
+                          showCaptions
+                          style={{ width: "100%", height: "100%" }}
+                        />
+                      ) : p.image ? (
+                        <img
+                          src={p.image}
+                          alt={`${p.category} project`}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            background: "linear-gradient(135deg, var(--color-paper-3) 0%, var(--color-paper-2) 100%)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontFamily: "var(--font-display)",
+                              fontWeight: 800,
+                              fontSize: "var(--text-3xl)",
+                              color: "var(--color-rule)",
+                              letterSpacing: "-0.02em",
+                              textTransform: "lowercase",
+                            }}
+                          >
+                            {p.category.toLowerCase()}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </ScaleReveal>
 
-                <FadeIn direction="up" distance={10} duration={0.5} delay={0.25}>
-                  {p.link ? (
-                    <Button
-                      as="a"
-                      href={p.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      variant="text"
-                      size="sm"
-                      className="mt-4"
-                    >
-                      View project <span className="almoo-arrow">→</span>
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="text"
-                      size="sm"
-                      className="mt-4"
-                    >
-                      View project <span className="almoo-arrow">→</span>
-                    </Button>
+                  {/* Project video */}
+                  {p.video && (
+                    <ScaleReveal from={1.03} to={1} duration={0.8} delay={0.1}>
+                      <div className="work-video-wrapper">
+                        <video
+                          src={p.video}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                        />
+                      </div>
+                    </ScaleReveal>
                   )}
-                </FadeIn>
-              </div>
-            </article>
-          </StaggerItem>
-        ))}
-      </StaggerContainer>
-    </section>
+
+                  <div className="work-title-row">
+                    <FadeIn direction="up" distance={15} duration={0.6} delay={0.1}>
+                      <h3
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontWeight: 800,
+                          fontSize: "var(--text-2xl)",
+                          letterSpacing: "-0.02em",
+                          textTransform: "lowercase",
+                        }}
+                      >
+                        {p.title}
+                        {p.isConcept && (
+                          <span className="work-concept-badge">
+                            Concept
+                          </span>
+                        )}
+                      </h3>
+                    </FadeIn>
+                    <FadeIn direction="up" distance={10} duration={0.5} delay={0.15}>
+                      <span
+                        style={{
+                          fontFamily: "var(--font-body)",
+                          fontWeight: 500,
+                          fontSize: "var(--text-sm)",
+                          color: "var(--color-muted)",
+                          fontVariantNumeric: "tabular-nums",
+                        }}
+                      >
+                        {p.year}
+                      </span>
+                    </FadeIn>
+                  </div>
+
+                  <FadeIn direction="up" distance={12} duration={0.6} delay={0.2}>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "var(--text-base)",
+                        color: "var(--color-ink-2)",
+                        lineHeight: 1.5,
+                        marginTop: "var(--space-sm)",
+                        maxWidth: "52ch",
+                      }}
+                    >
+                      {p.desc}
+                    </p>
+                  </FadeIn>
+
+                  <FadeIn direction="up" distance={10} duration={0.5} delay={0.25}>
+                    {p.link ? (
+                      <Button
+                        as="a"
+                        href={p.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        variant="text"
+                        size="sm"
+                        className="mt-4"
+                      >
+                        View project <span className="almoo-arrow">→</span>
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="text"
+                        size="sm"
+                        className="mt-4"
+                      >
+                        View project <span className="almoo-arrow">→</span>
+                      </Button>
+                    )}
+                  </FadeIn>
+                </div>
+              </article>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </section>
+    </>
   );
 }
