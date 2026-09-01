@@ -1,825 +1,1018 @@
 
 
-```text
+# Almoo Studio — Premium Inquiry + Brevo Email Automation Implementation
+
 You are working on the existing Almoo Studio website.
 
-IMPORTANT:
-Do NOT redesign the website.
-Do NOT change the existing color palette, typography, layout, spacing, branding, content, header, hero design, footer design, or overall visual direction unless absolutely necessary for animation implementation.
+The existing project is a Next.js 15.1 + React 19 + TypeScript + Tailwind CSS 4 application with Motion/Framer Motion and GSAP.
 
-Your task is to add a HIGH-END, PREMIUM, SMOOTH MOTION SYSTEM to the entire website.
+The website already has:
 
-The website should feel like a carefully art-directed modern digital agency website — not like a generic website with random fade-in animations.
+* `components/Contact.tsx`
+* `components/Inquiry.tsx`
+* `components/Button.tsx`
+* reusable motion primitives
+* existing design tokens
+* existing reduced-motion support
 
-The goal is:
-Every important text/content section should have its own appropriate animation behavior.
+Do NOT redesign the whole website.
 
-DO NOT animate the footer.
-The footer already has its own animation system and must remain untouched.
+The goal is to transform the current Contact/Inquiry experience into a premium step-by-step project intake system connected to a real email automation flow.
 
---------------------------------------------------
-1. FIRST: AUDIT THE ENTIRE WEBSITE
---------------------------------------------------
+---
 
-Before changing anything:
+# CORE USER FLOW
 
-Inspect the entire existing codebase.
+The final experience must work like this:
 
-Identify:
+```text
+Visitor
+   ↓
+Contact / Start a Project
+   ↓
+Step 01 — Project Type
+   ↓
+Step 02 — Project Stage
+   ↓
+Step 03 — Budget
+   ↓
+Step 04 — Project Details
+   ↓
+Step 05 — Contact Information
+   ↓
+Review
+   ↓
+Submit
+   ↓
+Next.js backend/API
+   ↓
+Validate + sanitize data
+   ↓
+Brevo Transactional Email API
+   ↓
+ ┌─────────────────────────────┐
+ │                             │
+ ↓                             ↓
+Almoo Business Email           User Confirmation
+almoo.agency@gmail.com         User's email
+                             │
+                             ↓
+                       From:
+                       Almoo Studio
+                       <hello@almoo.pro.bd>
+```
 
-- Header
-- Hero
-- Hero eyebrow text
-- Hero headline
-- Hero description
-- Hero CTA buttons
-- Hero secondary links
-- Work / Projects section
-- Project titles
-- Project descriptions
-- Project metadata
-- Services section
-- Service headings
-- Service descriptions
-- About section
-- About headings
-- About paragraphs
-- Stats / numbers
-- Process section
-- Process steps
-- Testimonials / client section
-- CTA section
-- Navigation
-- Any other text-heavy sections
-- Cards
-- Lists
-- Labels
-- Small metadata text
-- Images that are visually connected to text
+---
 
-Do NOT blindly apply the same animation everywhere.
+# IMPORTANT EMAIL REQUIREMENT
 
-Create a different motion treatment depending on the purpose and visual hierarchy of each element.
+Use Brevo Transactional Email API.
 
---------------------------------------------------
-2. ANIMATION PHILOSOPHY
---------------------------------------------------
+The verified sender must be:
 
-The animation style must feel:
+**Name:**
+`Almoo Studio`
 
-- Premium
-- Editorial
-- Cinematic
-- Minimal
-- Smooth
-- Intentional
-- Expensive
-- Modern
-- Confident
-- Subtle but noticeable
-- Never childish
-- Never excessive
+**Email:**
+`hello@almoo.pro.bd`
 
-Avoid:
+The internal Almoo business email is:
 
-- Random bouncing
-- Excessive scaling
-- Huge rotations
-- Cartoon-like motion
-- Every element moving at once
-- Generic fade-in animations everywhere
-- Overly fast animations
-- Long awkward delays
-- Constant looping animations
-- Excessive blur
-- Excessive parallax
+`almoo.agency@gmail.com`
 
-The user should feel:
+The user's submitted email should receive an automatic confirmation.
 
-"Everything is moving because it was designed to move."
+---
 
-NOT:
+# EMAIL FLOW
 
-"Everything has an animation because the developer added animation."
+When a user submits the inquiry:
 
---------------------------------------------------
-3. USE THE EXISTING TECH STACK
---------------------------------------------------
+## EMAIL 01 — INTERNAL BUSINESS NOTIFICATION
 
-Use the existing project architecture.
+Send to:
 
-Preferred animation technologies:
+`almoo.agency@gmail.com`
 
-- Motion / motion/react for UI and text animations
-- GSAP only where complex scroll-based animation is genuinely useful
-- CSS transitions for simple hover states
-- IntersectionObserver or Motion viewport detection for reveal animations
+From:
 
-Do NOT introduce unnecessary animation libraries.
+`Almoo Studio <hello@almoo.pro.bd>`
 
-If Motion is already installed, reuse it.
+Reply-To:
 
-If it is not installed and the project architecture allows it, install:
+The user's submitted email.
 
-motion
+This is extremely important.
 
-Do not install multiple animation libraries just for basic effects.
+When Almoo receives the inquiry and clicks Reply, the reply should go directly to the potential client instead of `hello@almoo.pro.bd`.
 
---------------------------------------------------
-4. CREATE A REUSABLE MOTION SYSTEM
---------------------------------------------------
+Subject example:
 
-Do NOT write completely separate animation logic for every single element.
+`New Project Inquiry — {Name} — {Project Type}`
 
-Create reusable animation primitives where appropriate.
+---
 
-For example:
+# INTERNAL EMAIL DESIGN
 
-components/ui/motion/
+Create a beautiful, professional HTML email.
 
-or another location that matches the existing architecture.
+Do NOT send raw JSON.
 
-Possible reusable components:
+The email should look like a mini project brief.
 
-- FadeIn
-- RevealText
-- WordReveal
-- LineReveal
-- SlideIn
-- BlurReveal
-- StaggerContainer
-- StaggerItem
-- ScaleReveal
-- SectionReveal
+Example structure:
 
-However, DO NOT force every section to use these components.
+```text
+ALMOO STUDIO
+NEW PROJECT INQUIRY
 
-Reusable components should support customization such as:
+────────────────────────────
 
-- direction
-- delay
-- duration
-- stagger
-- amount
-- once
-- distance
-- blur
-- viewport
-- className
+CLIENT
 
-Keep the API clean.
+Name
+John Doe
 
---------------------------------------------------
-5. HERO TEXT ANIMATION
---------------------------------------------------
+Email
+john@example.com
 
-The hero is the most important section.
+Company
+Example Studio
 
-Use the existing TextGenerateEffect component provided in the project for the main hero text if it is already installed.
+Website
+example.com
 
-But customize the content and styling to match Almoo.
+WhatsApp / Phone
++880...
 
-The hero headline should NOT look like a normal paragraph appearing from opacity 0.
+────────────────────────────
 
-Use a premium word-by-word reveal.
+PROJECT
 
-Recommended behavior:
+Project Type
+Web Application
 
-1. Small eyebrow appears first
-2. Main headline reveals word-by-word
-3. Words should transition from:
-   opacity: 0
-   blur: 8-12px
-   y: 20-30px
+Project Stage
+Existing Business
+
+Budget
+$1,000 — $3,000
+
+────────────────────────────
+
+PROJECT DETAILS
+
+We want to redesign our existing website
+and improve conversion.
+
+────────────────────────────
+
+SUBMITTED
+September 1, 2026
+```
+
+Make the email visually polished and readable.
+
+Use inline CSS because this is an email.
+
+Do not depend on external CSS.
+
+---
+
+# EMAIL 02 — USER CONFIRMATION
+
+Send confirmation to the user's submitted email.
+
+From:
+
+**Almoo Studio [hello@almoo.pro.bd](mailto:hello@almoo.pro.bd)**
+
+Reply-To:
+
+`almoo.agency@gmail.com`
+
+Subject:
+
+`We've received your project inquiry — Almoo Studio`
+
+The email should feel personal and professional.
+
+Content:
+
+```text
+Hi {Name},
+
+Thanks for reaching out to Almoo Studio.
+
+We've received your project details and our team will review them carefully.
+
+We'll get back to you within 24–48 hours.
+
+Your inquiry
+
+Project:
+{Project Type}
+
+Stage:
+{Project Stage}
+
+Budget:
+{Budget}
+
+We'll be in touch soon.
+
+— Almoo Studio
+We Build. You Grow.
+```
+
+Do not make this look like a generic automated email.
+
+---
+
+# STEP-BY-STEP UI
+
+The form should NOT display all fields at once.
+
+The user sees one question at a time.
+
+Use a premium editorial interface.
+
+At the top:
+
+```text
+01 / 05
+```
+
+or
+
+```text
+01 — 05
+```
+
+Use a subtle progress indicator.
+
+---
+
+# STEP 01
+
+Question:
+
+**What are you looking to build?**
+
+Options:
+
+* Website
+* Web Application
+* UI / UX Design
+* AI & Automation
+* Digital Growth
+* Something else
+
+The user clicks one.
+
+Immediately enable:
+
+`Continue →`
+
+Do not force the user to click Continue if a better interaction is possible, but maintain accessibility.
+
+---
+
+# STEP 02
+
+Question:
+
+**Where are you right now?**
+
+Options:
+
+* Just an idea
+* Starting a new business
+* Existing business
+* Redesigning something
+* Scaling an existing product
+* Other
+
+---
+
+# STEP 03
+
+Question:
+
+**What's your approximate budget?**
+
+Options:
+
+* Under $500
+* $500 — $1,000
+* $1,000 — $3,000
+* $3,000+
+* Not sure yet
+
+Do not make the user feel judged by the budget question.
+
+Keep the copy friendly.
+
+---
+
+# STEP 04
+
+Question:
+
+**Tell us about your project.**
+
+Textarea.
+
+Placeholder:
+
+`What's the idea, problem, or goal you're working toward?`
+
+Required.
+
+---
+
+# STEP 05
+
+Question:
+
+**How can we reach you?**
+
+Fields:
+
+Name *
+Email *
+Company / Brand
+Website
+WhatsApp / Phone
+
+Required:
+
+Name
+Email
+
+Optional:
+
+Company
+Website
+WhatsApp / Phone
+
+---
+
+# STEP 06 — REVIEW
+
+Before submission, show a clean summary.
+
+Example:
+
+```text
+YOUR PROJECT
+
+Project
+Web Application
+
+Stage
+Existing Business
+
+Budget
+$1,000 — $3,000
+
+Details
+Redesign our existing platform...
+
+CONTACT
+
+John Doe
+john@example.com
+Example Studio
+example.com
++880...
+
+────────────────────────
+
+[ ← Edit ]     [ Send Inquiry → ]
+```
+
+This review step is important.
+
+The user should be able to edit any answer without losing data.
+
+---
+
+# SUBMIT
+
+Primary CTA:
+
+`Send Inquiry →`
+
+When clicked:
+
+```text
+Sending your inquiry...
+```
+
+Disable duplicate submissions.
+
+Prevent double-click / duplicate API calls.
+
+---
+
+# SUCCESS STATE
+
+After the backend confirms successful submission:
+
+Replace the form with:
+
+```text
+Inquiry received.
+
+Thanks, {Name}.
+
+We've received your project details.
+
+We'll review everything and get back to you within 24–48 hours.
+
+[ Back to top ↑ ]
+
+Prefer a direct conversation?
+
+[ WhatsApp → ]
+```
+
+Make this visually premium.
+
+Do not show a fake success state before the API actually succeeds.
+
+---
+
+# ERROR STATE
+
+If email/API submission fails:
+
+```text
+Something went wrong.
+
+We couldn't send your inquiry right now.
+
+Your information has not been lost.
+
+[ Try Again ]
+
+or
+
+[ WhatsApp Us → ]
+```
+
+Keep all form state intact.
+
+Never clear the user's information on failure.
+
+---
+
+# BACKEND ARCHITECTURE
+
+Do NOT call Brevo directly from the client.
+
+The Brevo API key must NEVER be exposed to browser JavaScript.
+
+Use a server-side Next.js API route.
+
+Recommended:
+
+```text
+app/api/inquiry/route.ts
+```
+
+Flow:
+
+```text
+POST /api/inquiry
+
+       ↓
+
+Validate request body
+
+       ↓
+
+Sanitize strings
+
+       ↓
+
+Validate email
+
+       ↓
+
+Rate limit / abuse protection
+
+       ↓
+
+Create normalized inquiry object
+
+       ↓
+
+Send internal email via Brevo
+
+       ↓
+
+Send user confirmation via Brevo
+
+       ↓
+
+Return success
+```
+
+---
+
+# ENVIRONMENT VARIABLES
+
+Use environment variables.
+
+Example:
+
+```env
+BREVO_API_KEY=...
+BREVO_SENDER_EMAIL=hello@almoo.pro.bd
+BREVO_SENDER_NAME=Almoo Studio
+ALMOO_INQUIRY_EMAIL=almoo.agency@gmail.com
+```
+
+NEVER put:
+
+`BREVO_API_KEY`
+
+inside client-side code.
+
+NEVER hardcode the API key.
+
+---
+
+# BREVO IMPLEMENTATION
+
+Use the official Brevo transactional email API.
+
+Endpoint:
+
+`POST /v3/smtp/email`
+
+Use the sender:
+
+```text
+{
+  email: "hello@almoo.pro.bd",
+  name: "Almoo Studio"
+}
+```
+
+For internal notification:
+
+```text
+to:
+almoo.agency@gmail.com
+
+replyTo:
+user.email
+```
+
+For user confirmation:
+
+```text
+to:
+user.email
+
+replyTo:
+almoo.agency@gmail.com
+```
+
+Use HTML + plain text versions where appropriate.
+
+Add useful tags such as:
+
+```text
+["almoo-inquiry", "website-contact"]
+```
+
+---
+
+# IMPORTANT — DOMAIN
+
+Do not assume that `hello@almoo.pro.bd` will work automatically.
+
+The implementation should expect that:
+
+`almoo.pro.bd`
+
+is authenticated/verified in Brevo and that:
+
+`hello@almoo.pro.bd`
+
+is an authorized sender.
+
+If it is not configured, document exactly what DNS/domain verification is required.
+
+Do not attempt to bypass sender verification.
+
+---
+
+# REPLY FLOW
+
+The internal email must be configured with:
+
+```text
+Reply-To: user's submitted email
+```
+
+Therefore:
+
+```text
+Almoo receives inquiry
+       ↓
+Clicks Reply
+       ↓
+Reply goes to client
+```
+
+For user confirmation:
+
+```text
+User receives confirmation
+       ↓
+Clicks Reply
+       ↓
+Reply goes to:
+almoo.agency@gmail.com
+```
+
+This creates a clean two-way communication flow.
+
+---
+
+# OPTIONAL INBOUND EMAIL AUTOMATION
+
+Do NOT implement inbound email parsing unless explicitly necessary.
+
+The primary requirement is:
+
+website inquiry → email notification + user confirmation.
+
+However, architect the system so that inbound email automation can be added later.
+
+Brevo supports inbound email parsing through a webhook and can provide structured email data to a backend endpoint.
+
+Potential future flow:
+
+```text
+Client replies
+    ↓
+hello@almoo.pro.bd
+    ↓
+Inbound email processing
+    ↓
+Webhook
+    ↓
+Next.js backend
+    ↓
+CRM / database / notification
+```
+
+Do not add this complexity to the current implementation unless required.
+
+---
+
+# DATABASE
+
+Do not introduce a database just for sending emails unless the project already has one.
+
+For this version:
+
+API submission
+→ Brevo
+→ response
+
+is sufficient.
+
+However, structure the code so a database can be added later.
+
+---
+
+# SECURITY
+
+Implement basic production protections:
+
+* server-side validation
+* email validation
+* input length limits
+* string sanitization
+* rate limiting or lightweight abuse protection
+* reject obviously malformed requests
+* prevent duplicate submission
+* never expose Brevo API key
+* never trust client-side validation alone
+
+Do not log sensitive user information unnecessarily.
+
+Do not log the Brevo API key.
+
+---
+
+# ANIMATION
+
+Use the existing Almoo motion system.
+
+Use:
+
+* FadeIn
+* MaskReveal
+* BlurReveal
+* StaggerContainer
+* AnimatePresence
+
+Step transition should feel smooth.
+
+Example:
+
+Exit:
+
+```text
+opacity: 0
+y: -10
+```
+
+Enter:
+
+```text
+opacity: 0
+y: 12
+```
 
 to:
 
-   opacity: 1
-   blur: 0
-   y: 0
-
-Use a smooth ease.
-
-The headline should feel like it is being revealed rather than simply fading in.
-
-Recommended timing:
-
-Eyebrow:
-duration: 0.5-0.7s
-
-Headline:
-duration per word: approximately 0.4-0.6s
-
-Stagger:
-approximately 0.05-0.10s
-
-Do NOT make the animation painfully slow.
-
---------------------------------------------------
-6. HERO DESCRIPTION
---------------------------------------------------
-
-The description should appear AFTER the headline.
-
-Use a subtle line/paragraph reveal.
-
-Recommended:
-
-opacity: 0
-y: 20px
-filter: blur(4px)
-
-→
-
+```text
 opacity: 1
 y: 0
-filter: blur(0)
+```
 
 Duration:
-0.7-0.9s
 
-Use a small delay after the headline.
+400–600ms.
 
---------------------------------------------------
-7. HERO CTA ANIMATION
---------------------------------------------------
+Easing:
 
-CTA buttons should NOT simply fade in.
+`cubic-bezier(0.16, 1, 0.3, 1)`
 
-Use a subtle upward reveal:
+Do not add excessive animation.
 
-opacity: 0
-y: 15-20px
-scale: 0.98
+---
 
-→
+# DESIGN
 
-opacity: 1
-y: 0
-scale: 1
+Maintain existing Almoo Studio visual identity.
 
-Add a small stagger between primary and secondary CTA.
+Do NOT turn this into:
 
-Do NOT make buttons bounce.
+* SaaS dashboard
+* glassmorphism form
+* colorful onboarding wizard
+* generic startup form
+* excessive rounded cards
 
-On hover:
+It should remain:
 
-Use subtle movement.
+**minimal + editorial + premium + human.**
 
-Example:
+Use existing design tokens.
 
-Arrow moves slightly to the right.
+Reuse existing Button component.
 
-Button content shifts approximately 3-5px.
+---
 
-Use smooth easing.
+# MOBILE
 
---------------------------------------------------
-8. SECTION HEADINGS
---------------------------------------------------
+On mobile:
 
-Every major section heading should have its own entrance animation.
+* one question at a time
+* large touch targets
+* no horizontal overflow
+* sticky or easily accessible navigation if useful
+* progress indicator remains visible
+* Back / Continue buttons remain easy to reach
+* textarea should be comfortable to use
 
-Do NOT use the exact same animation for every heading.
+Test at:
 
-Use variations such as:
+320px
+375px
+390px
+430px
+768px
 
-SECTION A:
-Line reveal from bottom.
+---
 
-SECTION B:
-Word reveal.
+# ACCESSIBILITY
 
-SECTION C:
-Small upward blur reveal.
+Every step must be keyboard accessible.
 
-SECTION D:
-Mask-based reveal.
+Selection options must work with keyboard.
 
-SECTION E:
-Subtle horizontal reveal.
+Use semantic buttons.
 
-Keep these variations visually consistent.
-
-The animations should still feel like the same design system.
-
---------------------------------------------------
-9. LARGE EDITORIAL TEXT
---------------------------------------------------
-
-For very large typography:
-
-Use an editorial reveal.
-
-Recommended:
-
-overflow: hidden
-
-inner text:
-
-transform: translateY(100%)
-
-opacity: 0
-
-Then animate to:
-
-transform: translateY(0%)
-
-opacity: 1
-
-This should feel like the text is sliding out from behind a mask.
-
-Use this especially for:
-
-- Large section titles
-- Work headings
-- Services headings
-- About headings
-- CTA headings
-
-Do NOT use this on every text element.
-
---------------------------------------------------
-10. PARAGRAPHS
---------------------------------------------------
-
-Normal paragraphs should have a much more subtle animation.
+Use proper labels.
 
 Use:
 
-opacity: 0
-y: 15-20px
+`aria-selected`
 
-→
-
-opacity: 1
-y: 0
-
-Duration:
-0.6-0.8s
-
-Do not animate every individual word in normal paragraphs.
-
-That would make the site feel over-engineered.
-
---------------------------------------------------
-11. SMALL LABELS / EYEBROWS
---------------------------------------------------
-
-For labels such as:
-
-ALMOO STUDIO
-SERVICES
-SELECTED WORK
-ABOUT
-OUR PROCESS
-
-Use a small horizontal reveal.
-
-Example:
-
-opacity: 0
-x: -10px
-letterSpacing: slightly larger
-
-→
-
-opacity: 1
-x: 0
-
-At the same time, optionally animate a tiny decorative line/dot.
-
-Keep it extremely subtle.
-
---------------------------------------------------
-12. WORK / PROJECT SECTION
---------------------------------------------------
-
-Project sections should feel cinematic.
-
-When a project enters the viewport:
-
-1. Project image reveals
-2. Project label appears
-3. Project title reveals
-4. Description appears
-5. Metadata appears
-
-Use staggered timing.
-
-Example:
-
-Image:
-scale 1.05 → 1
-
-Title:
-y 30 → 0
-
-Description:
-opacity 0 → 1
-
-Metadata:
-opacity 0 → 1
-
-Avoid making everything move simultaneously.
-
-The image and typography should feel connected.
-
---------------------------------------------------
-13. SERVICE SECTION
---------------------------------------------------
-
-Services should NOT simply fade in as cards.
-
-Use staggered entrance.
-
-For example:
-
-Service number:
-small fade/slide
-
-Service title:
-masked reveal
-
-Service description:
-fade-up
-
-Service icon:
-subtle scale
-
-Each service should have a small stagger.
-
-On hover:
-
-- title can move slightly
-- arrow can move
-- border/background can transition
-- icon can subtly rotate or translate
-
-Keep hover animation extremely subtle.
-
---------------------------------------------------
-14. ABOUT SECTION
---------------------------------------------------
-
-The About section should feel more editorial.
+where appropriate.
 
 Use:
 
-Small label:
-fade + slide
+`aria-invalid`
 
-Large statement:
-word/line reveal
+for invalid fields.
 
-Paragraph:
-fade-up
+Use:
 
-Supporting visual:
-subtle scale/parallax
+`aria-describedby`
 
-Do NOT make every line independently animate.
+for validation messages.
 
-The animation should guide the eye.
-
---------------------------------------------------
-15. NUMBERS / STATS
---------------------------------------------------
-
-If the website contains statistics or large numbers:
-
-Animate them when they enter the viewport.
-
-Use a number count-up animation only if the numbers represent actual measurable values.
-
-Otherwise use a simple scale/opacity reveal.
-
-Do NOT create fake statistics.
-
---------------------------------------------------
-16. PROCESS SECTION
---------------------------------------------------
-
-For process steps:
-
-Use sequential animation.
-
-Example:
-
-01
-↓
-02
-↓
-03
-↓
-04
-
-Each item should enter with a slight delay.
-
-The active step can have a subtle highlight.
-
-If appropriate, use a scroll-linked progress indicator.
-
-Keep it elegant.
-
---------------------------------------------------
-17. SCROLL-BASED ANIMATION
---------------------------------------------------
-
-Use scroll animation selectively.
-
-Good uses:
-
-- Large editorial headings
-- Project images
-- Background decorative elements
-- Section transitions
-- Large typography
-- Subtle parallax
-
-Bad uses:
-
-- Every paragraph
-- Every button
-- Every tiny label
-- Everything moving continuously
-
-The page must remain comfortable to read.
-
---------------------------------------------------
-18. VIEWPORT TRIGGER
---------------------------------------------------
-
-Most entrance animations should trigger when the element enters the viewport.
-
-Use Motion viewport functionality where appropriate.
-
-Recommended behavior:
-
-- once: true for normal content
-- amount: approximately 0.15-0.3
-
-Do not replay every animation every time the user scrolls slightly up and down.
-
-Hero animations can run once on initial page load.
-
---------------------------------------------------
-19. STAGGER SYSTEM
---------------------------------------------------
-
-Create a consistent stagger hierarchy.
-
-Example:
-
-Major heading:
-0s
-
-Description:
-0.10-0.20s
-
-CTA:
-0.20-0.30s
-
-Secondary metadata:
-0.30-0.40s
-
-For lists/cards:
-
-0.05-0.10s stagger between items.
-
-Do NOT use huge stagger delays.
-
---------------------------------------------------
-20. EASING
---------------------------------------------------
-
-Avoid linear easing for normal UI animations.
-
-Prefer premium easing such as:
-
-easeOut
-easeInOut
-cubic-bezier(0.16, 1, 0.3, 1)
-
-or Motion equivalents.
-
-Animations should accelerate naturally and settle smoothly.
-
---------------------------------------------------
-21. PAGE LOAD EXPERIENCE
---------------------------------------------------
-
-The page should NOT take several seconds before becoming usable.
-
-Critical hero content should begin appearing immediately.
-
-Do not create a long loading animation.
-
-The user should see useful content almost immediately.
-
---------------------------------------------------
-22. REDUCED MOTION ACCESSIBILITY
---------------------------------------------------
+Announce step changes appropriately for screen readers where practical.
 
 Respect:
 
-prefers-reduced-motion
+`prefers-reduced-motion`.
 
-When reduced motion is enabled:
+---
 
-- Disable large movement
-- Disable parallax
-- Disable complex transforms
-- Keep opacity transitions minimal
-- Make content immediately readable
+# API RESPONSE
 
-The website must remain fully usable.
+Use a clean response format.
 
---------------------------------------------------
-23. MOBILE RESPONSIVENESS
---------------------------------------------------
+Success:
 
-Animations must work well on mobile.
+```ts
+{
+  success: true
+}
+```
 
-Reduce:
+Error:
 
-- movement distance
-- parallax
-- large transforms
-- expensive effects
+```ts
+{
+  success: false,
+  error: "Unable to send inquiry"
+}
+```
 
-Do not use hover-only animations as the primary interaction on mobile.
+Do not expose internal Brevo error details to the user.
 
-Make sure:
+Log useful server-side diagnostics only.
 
-- no horizontal overflow
-- no text clipping
-- no layout jumps
-- no performance problems
+---
 
---------------------------------------------------
-24. PERFORMANCE
---------------------------------------------------
+# EMAIL FAILURE HANDLING
 
-Use GPU-friendly properties whenever possible:
+Important:
 
-transform
-opacity
+There are two emails:
 
-Avoid animating:
+1. Internal Almoo notification
+2. User confirmation
 
-width
-height
-top
-left
-margin
-padding
+If the internal email fails, do not tell the user that everything was successful.
 
-unless absolutely necessary.
+If the user confirmation fails but the internal email succeeded, handle this gracefully and return an appropriate state.
 
-Do not cause layout thrashing.
+Prefer making the backend result explicit:
 
-Clean up animation listeners and subscriptions properly.
+```ts
+{
+  internalEmailSent: boolean;
+  confirmationEmailSent: boolean;
+}
+```
 
-Make sure animations work correctly with React Strict Mode.
+Then determine the appropriate UI state.
 
---------------------------------------------------
-25. IMPORTANT: DO NOT TOUCH FOOTER
---------------------------------------------------
+Do not create duplicate inquiries by blindly retrying both emails.
 
-The footer already contains its own animation system.
+---
 
-DO NOT:
+# IMPLEMENTATION REQUIREMENTS
 
-- rewrite footer animation
-- add new footer animation
-- replace footer GSAP
-- modify footer motion behavior
+Before coding:
 
-Only make sure the animation system above the footer does not conflict with it.
+1. Inspect existing `Contact.tsx`.
+2. Inspect existing `Inquiry.tsx`.
+3. Inspect `app/page.tsx`.
+4. Inspect `Button.tsx`.
+5. Inspect existing motion primitives.
+6. Inspect `tokens.css`.
+7. Inspect current environment configuration.
+8. Determine whether the project already has an API/backend structure.
 
---------------------------------------------------
-26. BUTTON MOTION
---------------------------------------------------
+Then implement the feature.
 
-All buttons across the website should follow the existing Almoo button design language.
+Prefer modifying/reusing existing components instead of creating redundant components.
 
-Do NOT randomly give every button a different animation.
+---
 
-Use one consistent button interaction system:
+# FILE STRUCTURE
 
-Default:
-clean and minimal
+A reasonable implementation could be:
 
-Hover:
-small translate
-subtle background transition
-arrow movement
+```text
+components/
+  Contact.tsx
+  Inquiry.tsx
+  inquiry/
+    InquiryStep.tsx
+    ProjectTypeStep.tsx
+    ProjectStageStep.tsx
+    BudgetStep.tsx
+    ProjectDetailsStep.tsx
+    ContactDetailsStep.tsx
+    ReviewStep.tsx
+    InquirySuccess.tsx
 
-Active:
-very subtle scale down
+app/
+  api/
+    inquiry/
+      route.ts
 
-Focus:
-accessible focus ring
+lib/
+  email/
+    brevo.ts
+```
 
-Do NOT use bounce effects.
+Do NOT blindly follow this structure if the existing project architecture has a better pattern.
 
---------------------------------------------------
-27. OVERALL MOTION HIERARCHY
---------------------------------------------------
+Reuse existing files where appropriate.
 
-Create clear hierarchy.
+---
 
-LEVEL 1 — HERO:
-Most expressive animation.
-
-LEVEL 2 — MAJOR SECTION HEADINGS:
-Strong editorial reveal.
-
-LEVEL 3 — PROJECTS / SERVICES:
-Medium staggered motion.
-
-LEVEL 4 — PARAGRAPHS:
-Subtle fade-up.
-
-LEVEL 5 — METADATA:
-Very subtle opacity/slide.
-
-This hierarchy is extremely important.
-
---------------------------------------------------
-28. DO NOT OVER-ANIMATE
---------------------------------------------------
-
-After implementing everything, review the website again.
-
-Ask:
-
-"Does every animation have a purpose?"
-
-If not, remove it.
-
-The final result should feel:
-
-CALM
-PREMIUM
-EDITORIAL
-CINEMATIC
-CONFIDENT
-
-not:
-
-FLASHY
-BUSY
-GIMMICKY
-GAME-LIKE
-
---------------------------------------------------
-29. FINAL QA
---------------------------------------------------
+# TESTING CHECKLIST
 
 After implementation:
 
-1. Run the application.
-2. Check the entire page from top to bottom.
-3. Check desktop.
-4. Check tablet.
-5. Check mobile.
-6. Test Chrome.
-7. Check scrolling performance.
-8. Check console for errors.
-9. Check React hydration errors.
-10. Check animation cleanup.
-11. Check reduced-motion behavior.
-12. Check that footer animation still works.
-13. Check that no horizontal overflow was introduced.
-14. Check that text remains readable during animation.
-15. Check that animations don't cause layout shifts.
+### UI
 
-If any animation feels excessive, reduce it.
+* [ ] Step navigation works
+* [ ] Back works
+* [ ] Data persists between steps
+* [ ] Review works
+* [ ] Edit works
+* [ ] Mobile works
+* [ ] Desktop works
+* [ ] Animations work
+* [ ] Reduced motion works
 
-The final website should look like a professionally art-directed digital agency website where motion is part of the visual identity.
+### Validation
 
-IMPORTANT FINAL RULE:
+* [ ] Required fields work
+* [ ] Email validation works
+* [ ] Invalid states work
+* [ ] Error messages are accessible
 
-Do not replace the current Almoo visual identity with generic shadcn animations.
+### API
 
-The animation system must adapt to the existing Almoo typography, spacing, colors, composition and editorial design.
+* [ ] API route works
+* [ ] Server-side validation works
+* [ ] Brevo API key stays server-side
+* [ ] Duplicate submissions are prevented
+* [ ] API errors are handled
 
-Animation should enhance the existing design — NOT become the design.
+### Email
+
+* [ ] Internal email arrives at `almoo.agency@gmail.com`
+* [ ] Internal email sender is `Almoo Studio <hello@almoo.pro.bd>`
+* [ ] Internal email Reply-To is the user's email
+* [ ] User confirmation arrives at submitted email
+* [ ] User confirmation sender is `Almoo Studio <hello@almoo.pro.bd>`
+* [ ] User confirmation Reply-To is `almoo.agency@gmail.com`
+* [ ] HTML email is responsive
+* [ ] Plain text fallback exists
+
+### Production
+
+* [ ] `npm run lint`
+* [ ] `npm run build`
+* [ ] TypeScript passes
+* [ ] No console errors
+* [ ] No exposed secrets
+* [ ] No broken existing sections
+
+---
+
+# FINAL GOAL
+
+The final user experience should feel like:
+
+```text
+"Almoo wants to understand my project."
 ```
 
-### তোমার ক্ষেত্রে বিশেষ করে আমি যেভাবে চাই
+not:
 
-**Hero:** সবচেয়ে বেশি expressive → word reveal
-**Section heading:** editorial/mask reveal
-**Paragraph:** subtle blur + upward
-**Services:** stagger
-**Projects:** image + text coordinated reveal
-**About:** large typography reveal
-**Stats:** count/reveal
-**CTA:** cinematic reveal
-**Buttons:** একই Almoo interaction system
-**Footer:** ❌ একদম touch করবে না
-
-আর একটা জিনিস খুব গুরুত্বপূর্ণ: **প্রতিটা text-এর animation আলাদা মানে প্রতিটা text-এর জন্য completely different animation না।** Motion-এর একটা consistent language থাকবে, কিন্তু **hierarchy অনুযায়ী behavior বদলাবে**। এটাই তোমার website-টাকে “joss” করবে, random animation-এর মতো লাগবে না।
+```text
+"Almoo wants me to fill out a contact form."
+```

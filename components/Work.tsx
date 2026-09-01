@@ -9,22 +9,30 @@ const projects = [
   {
     num: "01",
     category: "Digital Experience",
-    title: "Experimental Concept",
+    title: "Immersive Web Concept",
     year: "2026",
     desc: "An experimental web experience exploring interactive storytelling and motion design.",
     image: null,
-    images: null,
+    images: [
+      { image: "/digital-exp-1.png", caption: "Concept" },
+      { image: "/digital-exp-2.png", caption: "Interaction Design" },
+    ] as MorphItem[],
+    video: "/digital-exp-video.mp4",
     link: null,
     isConcept: true,
   },
   {
     num: "02",
     category: "Web Application",
-    title: "Experimental Concept",
+    title: "Treactly — SaaS Platform",
     year: "2026",
-    desc: "A custom dashboard platform built for data-driven decision making.",
+    desc: "A modern SaaS landing page with real-time tracking, analytics dashboard, and seamless user experience.",
     image: null,
-    images: null,
+    images: [
+      { image: "/web-app-1.png", caption: "Landing Page" },
+      { image: "/web-app-2.png", caption: "Features & Social Proof" },
+    ] as MorphItem[],
+    video: null,
     link: null,
     isConcept: true,
   },
@@ -43,6 +51,7 @@ const projects = [
       { image: "/jackpot-brand-5.png", caption: "Branches" },
       { image: "/jackpot-brand-6.png", caption: "Real reviwes" },
     ] as MorphItem[],
+    video: null,
     link: "https://jackpotbd.vercel.app/",
     isConcept: false,
   },
@@ -172,6 +181,34 @@ export default function Work() {
                     )}
                   </div>
                 </ScaleReveal>
+
+                {/* Project video */}
+                {p.video && (
+                  <ScaleReveal from={1.03} to={1} duration={0.8} delay={0.1}>
+                    <div
+                      style={{
+                        width: "100%",
+                        borderRadius: "var(--radius-md)",
+                        marginBottom: "var(--space-lg)",
+                        overflow: "hidden",
+                      }}
+                    >
+                      <video
+                        src={p.video}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          display: "block",
+                          borderRadius: "var(--radius-md)",
+                        }}
+                      />
+                    </div>
+                  </ScaleReveal>
+                )}
 
                 <div
                   style={{
