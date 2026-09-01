@@ -172,7 +172,7 @@ const STYLES = `
 
 .inquiry-option.selected {
   border-color: var(--color-accent);
-  background: oklch(68% 0.120 40 / 0.06);
+  background: var(--color-accent-subtle);
   box-shadow: 0 0 0 1px var(--color-accent);
 }
 
@@ -247,12 +247,12 @@ const STYLES = `
 .inquiry-input:focus,
 .inquiry-textarea:focus {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px oklch(68% 0.120 40 / 0.12);
+  box-shadow: 0 0 0 3px var(--color-accent-ring);
 }
 
 .inquiry-input.error,
 .inquiry-textarea.error {
-  border-color: oklch(65% 0.250 25);
+  border-color: var(--color-danger);
 }
 
 .inquiry-textarea {
@@ -264,7 +264,7 @@ const STYLES = `
 .inquiry-error {
   font-family: var(--font-body);
   font-size: var(--text-xs);
-  color: oklch(65% 0.250 25);
+  color: var(--color-danger);
   letter-spacing: 0.02em;
 }
 
@@ -283,6 +283,26 @@ const STYLES = `
   color: var(--color-ink);
   margin-bottom: var(--space-2xl);
   line-height: 1.15;
+}
+
+/* ── Back button ── */
+.inquiry-back-btn {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  color: var(--color-ink-2);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-xs) 0;
+  transition: color 250ms var(--ease-out);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.inquiry-back-btn:hover {
+  color: var(--color-ink);
 }
 
 /* ── Options grid ── */
@@ -327,6 +347,7 @@ const STYLES = `
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  gap: var(--space-md);
   padding: var(--space-sm) 0;
   border-bottom: 1px solid var(--color-rule);
 }
@@ -375,19 +396,19 @@ const STYLES = `
 
 /* ── Success state ── */
 .inquiry-success {
-  text-align: center;
-  padding: var(--space-4xl) var(--space-xl);
+  text-align: left;
+  padding: var(--space-3xl) var(--space-xl);
 }
 
 .inquiry-success-icon {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: oklch(68% 0.120 40 / 0.12);
+  background: var(--color-accent-ring);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto var(--space-xl);
+  margin: 0 0 var(--space-xl);
 }
 
 .inquiry-success h3 {
@@ -403,8 +424,7 @@ const STYLES = `
   font-family: var(--font-body);
   font-size: var(--text-base);
   color: var(--color-ink-2);
-  max-width: 40ch;
-  margin-inline: auto;
+  max-width: 48ch;
   line-height: 1.6;
 }
 
@@ -671,7 +691,7 @@ export default function Contact() {
           id="inquiry"
           className="container-narrow"
           style={{
-            paddingBlock: "var(--space-4xl)",
+            paddingBlock: "var(--space-3xl) var(--space-4xl)",
             background: "var(--color-paper)",
           }}
         >
@@ -707,7 +727,6 @@ export default function Contact() {
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                justifyContent: "center",
                 gap: "var(--space-lg)",
                 marginTop: "var(--space-2xl)",
               }}
@@ -749,7 +768,7 @@ export default function Contact() {
           id="inquiry"
           className="container-narrow"
           style={{
-            paddingBlock: "var(--space-4xl)",
+            paddingBlock: "var(--space-3xl) var(--space-4xl)",
             background: "var(--color-paper)",
           }}
         >
@@ -761,14 +780,14 @@ export default function Contact() {
           >
             <div
               className="inquiry-success-icon"
-              style={{ background: "oklch(65% 0.250 25 / 0.12)" }}
+              style={{ background: "var(--color-danger-subtle)" }}
             >
               <svg
                 width="28"
                 height="28"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="oklch(65% 0.250 25)"
+                stroke="var(--color-danger)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -789,7 +808,6 @@ export default function Contact() {
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                justifyContent: "center",
                 gap: "var(--space-lg)",
                 marginTop: "var(--space-2xl)",
               }}
@@ -833,26 +851,13 @@ export default function Contact() {
       <section
         id="inquiry"
         style={{
-          paddingBlock: "var(--space-4xl)",
+          paddingBlock: "var(--space-3xl) var(--space-4xl)",
           background: "var(--color-paper)",
         }}
       >
         <div className="container-narrow">
           {/* ── CONTACT HERO ── */}
           <div style={{ marginBottom: "var(--space-4xl)" }}>
-            <FadeIn direction="up" distance={10} duration={0.6} delay={0}>
-              <p
-                className="label"
-                style={{
-                  color: "var(--color-accent)",
-                  letterSpacing: "0.18em",
-                  marginBottom: "var(--space-lg)",
-                }}
-              >
-                START A PROJECT
-              </p>
-            </FadeIn>
-
             <MaskReveal direction="up" duration={0.9} delay={0.1}>
               <h2
                 className="display-lg"
@@ -936,21 +941,8 @@ export default function Contact() {
                     {canGoBack && (
                       <button
                         type="button"
+                        className="inquiry-back-btn"
                         onClick={goBack}
-                        style={{
-                          fontFamily: "var(--font-body)",
-                          fontWeight: 500,
-                          fontSize: "var(--text-sm)",
-                          color: "var(--color-ink-2)",
-                          background: "none",
-                          border: "none",
-                          cursor: "pointer",
-                          padding: "var(--space-xs) 0",
-                          transition: "color 250ms var(--ease-out)",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "var(--space-xs)",
-                        }}
                         aria-label="Go to previous step"
                       >
                         <span aria-hidden="true">&larr;</span> Back
@@ -1353,7 +1345,7 @@ export default function Contact() {
                         </div>
 
                         {/* WhatsApp / Phone */}
-                        <div className="inquiry-field" style={{ maxWidth: "50%" }}>
+                        <div className="inquiry-field">
                           <label
                             htmlFor="contact-phone"
                             className="inquiry-label"

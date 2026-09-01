@@ -77,6 +77,12 @@
   --radius-sm: 4px;
   --radius-md: 8px;
 
+  /* ── Inquiry form aliases ── */
+  --color-accent-subtle:   oklch(68% 0.120 40 / 0.06);
+  --color-accent-ring:     oklch(68% 0.120 40 / 0.12);
+  --color-danger:          oklch(65% 0.250 25);
+  --color-danger-subtle:   oklch(65% 0.250 25 / 0.12);
+
   /* ── shadcn-compatible aliases (for CinematicFooter) ── */
   --background: var(--color-dark);
   --foreground: var(--color-dark-ink);
