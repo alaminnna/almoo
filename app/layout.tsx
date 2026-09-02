@@ -2,20 +2,66 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Almoo Studio — Web, App & Digital Growth",
+  metadataBase: new URL("https://almoo.pro.bd"),
+  title: {
+    default: "Almoo Studio — Digital Agency in Bangladesh | Web, App & Growth",
+    template: "%s | Almoo Studio",
+  },
   description:
-    "Almoo Studio builds custom web, app, and digital solutions designed around your business.",
+    "Almoo Studio is a Bangladesh-based digital agency building websites, web apps, AI automation and digital growth solutions for businesses in Bangladesh and worldwide.",
+  keywords: [
+    "digital agency Bangladesh",
+    "web design Bangladesh",
+    "web development Bangladesh",
+    "web applications",
+    "AI automation",
+    "digital growth",
+    "SaaS development",
+    "UI UX design",
+  ],
+  authors: [{ name: "Al A Min" }],
+  creator: "Al A Min",
+  publisher: "Almoo Studio",
+  applicationName: "Almoo Studio",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://almoo.pro.bd",
+  },
   openGraph: {
-    title: "Almoo Studio — Web, App & Digital Growth",
+    title: "Almoo Studio — Digital Agency in Bangladesh | Web, App & Growth",
     description:
-      "Almoo Studio builds custom web, app, and digital solutions designed around your business.",
+      "Almoo Studio is a Bangladesh-based digital agency building websites, web apps, AI automation and digital growth solutions for businesses in Bangladesh and worldwide.",
+    url: "https://almoo.pro.bd",
+    siteName: "Almoo Studio",
+    locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Almoo Studio — Digital Agency in Bangladesh",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Almoo Studio — Web, App & Digital Growth",
+    title: "Almoo Studio — Digital Agency in Bangladesh | Web, App & Growth",
     description:
-      "Almoo Studio builds custom web, app, and digital solutions designed around your business.",
+      "Almoo Studio is a Bangladesh-based digital agency building websites, web apps, AI automation and digital growth solutions for businesses in Bangladesh and worldwide.",
+    images: ["/og-image.png"],
+    site: "@almoostudio",
+    creator: "@almoostudio",
   },
 };
 

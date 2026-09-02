@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
 const NAV_LINKS = [
-  { label: "About", href: "#philosophy" },
-  { label: "Services", href: "#services" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Work", href: "/work" },
   { label: "Process", href: "#process" },
-  { label: "Work", href: "#work" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -122,7 +122,7 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center">
             <a
-              href="#inquiry"
+              href="/contact"
               className="nav-cta-editorial"
               style={{
                 fontFamily: "var(--font-body)",
@@ -254,7 +254,7 @@ export default function Navbar() {
               </ul>
 
               <motion.a
-                href="#inquiry"
+                href="/contact"
                 onClick={() => setOpen(false)}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

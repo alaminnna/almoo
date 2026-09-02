@@ -137,11 +137,11 @@ const STYLES = `
 // SOCIAL LINKS CONFIGURATION
 // -------------------------------------------------------------------------
 const ALMOO_SOCIALS = {
-  instagram: "",
-  facebook: "",
-  tiktok: "",
-  x: "",
-  youtube: "",
+  instagram: "https://www.instagram.com/almoostudio/",
+  facebook: "https://www.facebook.com/almoostudio",
+  tiktok: "https://www.tiktok.com/@almoostudio",
+  x: "https://x.com/almoostudio",
+  youtube: "https://www.youtube.com/@almoostudio",
 };
 
 // -------------------------------------------------------------------------
